@@ -1,0 +1,245 @@
+Informational-Processual Monism
+
+Scientific Core — Metrics, Estimators & Falsification
+
+ 
+
+ 
+
+Author: Taotuner
+
+Date: June 2026
+
+Published on Zenodo
+
+ 
+
+Companion to: IPM Philosophical Core (2026) — Taotuner
+
+For the ontological interpretation of these regularities, see the Philosophical Core.
+
+Simulation families: Lack Kernel, Spectral Experiment, IPM Protocol, Collective Regimes Framework.
+
+ 
+
+
+ 
+
+1. Empirical Regularities (R1–R3)
+Simulation families (Lack Kernel, Spectral Experiment, IPM Protocol, Collective Regimes) consistently produced three reproducible patterns under the tested conditions (100 runs, ε=0.15, bins=30, max_lag=20).
+
+ 
+
+R1 — Lack-Degradation
+
+Higher perturbation → lower coherence. Coherence drops from 0.97 to 0.55 as noise increases from 0.02 to 1.2. In the IPM Protocol, Φ* drops approximately 16% under thermal perturbation before recovering.
+
+ 
+
+1.1 Minimal Model of Lack Dynamics
+A one-dimensional system with slow memory mₜ follows:
+
+ 
+
+xₜ₊₁ = xₜ + λ(mₜ − xₜ) + η,     η ~ N(0, σ²)
+
+ 
+
+Parameter
+
+Definition
+
+Value / Domain
+
+xₜ
+
+System state at time t
+
+—
+
+mₜ
+
+Memory (slow reference trajectory)
+
+—
+
+λ
+
+Coupling pull toward memory
+
+0.15, illustrative value used in the minimal model (stable domain: 0 < λ ≤ 1)
+
+η
+
+Stochastic perturbation
+
+Gaussian, zero mean, variance σ², i.i.d. per step
+
+σ
+
+Perturbation intensity
+
+Varied across runs (0.02 – 1.2)
+
+ 
+
+Coherence is defined as:
+
+ 
+
+cₜ = exp(−|xₜ − mₜ|)
+
+ 
+
+This model is not proposed as a universal law. It serves as a minimal dynamical illustration of the Lack–Coupling relationship underlying R1.
+
+Result: as σ increases, mean coherence decreases monotonically — illustrating R1. The term (mₜ − xₜ) operationalizes Lack as deviation between current state and memory; λ governs Coupling intensity. Φ* and 𝒞 are scalar compressions derived from the statistics of this process.
+
+ 
+
+R2 — Integration-Persistence
+
+Higher integration → longer persistence under perturbation. Higher integration yields longer metastability under moderate perturbation.
+
+ 
+
+R3 — Observed Clustering Under Specific Projections
+
+Under the tested observer projections (CCI, DIG-proxy, LMS) and simulation conditions, three coupling regimes formed separable clusters. Whether this reflects a property of the systems or an artifact of the chosen projections is not determined. Generalization not established.
+
+ 
+
+These are computational regularities, not universal invariants.
+
+ 
+
+2. Estimators
+One Possible Regime Marker: Φ*
+As an example of a scalar compression, define:
+
+ 
+
+Φ*(t) = [ε(t) + h(t)] / [1 + D(t)]
+
+ 
+
+Term
+
+Definition
+
+ε(t)
+
+k-NN prediction error in embedded space (Takens)
+
+h(t)
+
+Local transition entropy
+
+D(t)
+
+Penalty combining Lyapunov exponent + correlation dimension
+
+ 
+
+This is one functional form among many that satisfy the same boundary conditions (monotonicity in ε and h, rigidity penalty, chaos penalty, interior peak). Other compressions are possible. No claim is made that this specific form preserves all relevant information or that ε, h, D share a common dimension.
+
+ 
+
+Temporal Compressibility: 𝒞
+A complementary estimator based on inter-event intervals:
+
+ 
+
+𝒞 = E[ log( ψ(τᵢ | Hᵢ₋¹) / ψ(τᵢ) ) ]
+
+ 
+
+τᵢ = inter-event interval. 𝒞 is scale-dependent (discretization, resolution). Under specific conditions it reduces to transfer entropy, mutual information rate, or excess entropy.
+
+ 
+
+3. Falsification (Programmatic)
+The framework is weakened by:
+
+•       Systematic non-replication of R1–R3 in new simulation families or labs.
+
+•       Loss of inverted-U pattern under parameter variation.
+
+•       Φ* > 0 in thermodynamic equilibrium (no gradients).
+
+ 
+
+4. Known Limitations
+Limitation
+
+Description
+
+Mitigation / Direction
+
+Empirical base
+
+Four simulation families only
+
+Independent validation on real-world data required
+
+Φ* embedding dependence
+
+Parameters (dimension, delay, k) affect stability
+
+Sensitivity analysis required per application
+
+𝒞 and long-range memory
+
+Fails for non-stationary long-range memory
+
+Use block entropy estimators, Lempel-Ziv complexity, or fractal dimension methods — domain-specific choice
+
+Cross-domain generalization
+
+Not established
+
+Remains a working hypothesis
+
+ 
+
+5. The 𝒞 Reduction
+Under specific stationarity and process conditions, 𝒞 reduces to known information-theoretic quantities:
+
+ 
+
+Condition
+
+Reduces To
+
+History = immediate past
+
+Transfer entropy
+
+Markovian order k
+
+Mutual information rate (standard form)
+
+Stationary, ergodic
+
+Excess entropy
+
+Otherwise
+
+𝒞 is a scale-dependent estimator, not an invariant.
+
+ 
+
+References
+Bateson, G. (1972). Steps to an ecology of mind. Chandler.
+
+Friston, K. (2010). The free-energy principle: A unified brain theory? Nature Reviews Neuroscience, 11(2), 127–138.
+
+Kondepudi, D., & Prigogine, I. (1998). Modern thermodynamics. Wiley.
+
+Maturana, H. R., & Varela, F. J. (1980). Autopoiesis and cognition. D. Reidel.
+
+Prigogine, I., & Stengers, I. (1984). Order out of chaos. Bantam.
+
+Simondon, G. (2020). Individuation in light of notions of form and information. University of Minnesota Press.
+
+Tononi, G. (2004). An information integration theory of consciousness. BMC Neuroscience, 5, 42.
