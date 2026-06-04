@@ -1,0 +1,538 @@
+Observer Projection Framework for Collective Regime Analysis
+(Detection of Collective Regimes – Protocol)
+Author: Taotuner
+Based on: IPM Scientific Core
+Date: May 2026
+
+Abstract
+We introduce an observer‑projection framework for assessing similarity among descriptions of coupled dynamical systems. Collective regimes emerge as operational classes in the resulting observer space. The framework projects system descriptions onto three observer‑dependent metrics:
+
+Projection	Metric	Status
+Statistical redundancy	CCI (Coupling Coherence Index)	Definitional at theoretical level; empirical estimation is estimator‑dependent
+Model sensitivity	DIG‑proxy (Dynamical Independence Gap – proxy)	Provisional operationalization (cross‑correlation) – no canonical estimator
+Projection stability	LMS (Latent Manifold Stability)	Linear proxy (PCA autocorrelation) – collapses for nonlinear manifolds
+RCO (Regime Coherence Operator) is an arbitrary aggregation functional – a scalar projection for visualization only (appendix/post‑processing). It is not part of the core pipeline.
+
+Classification is multivariate based on the 3D vector (CCI, DIG‑proxy, LMS), independent of RCO thresholds.
+
+Operational regime classes are defined by a distance metric in (CCI, DIG‑proxy, LMS) space. The implementation uses Euclidean distance as a convenience metric; it has no privileged theoretical status. Alternative observer embeddings (mutual information graph space, spectral embedding, etc.) are possible and yield different class structures.
+
+SDCS (Shared Dynamical Coordinate System) is a meta‑theoretical selection criterion over families of models – not a latent object. The present implementation does not demonstrate that DIG‑proxy and LMS constitute sufficient statistics for parsimony assessment; they are treated as heuristic indicators motivating future direct implementations of SDCS (e.g., via cross‑validated prediction error, MDL, or Bayesian model comparison).
+
+Regime is a property of the description under the operator (CCI, DIG‑proxy, LMS), not an intrinsic system property. A collective regime is hypothesized when the observer projections indicate that a lower‑dimensional description may provide a more parsimonious account than independent subsystem descriptions.
+
+Epistemological core: This is a framework for assessing similarity of descriptions of dynamical systems under projective observers. Regimes correspond to operational classes of descriptions in the observer projection space. The topology of the regime space depends on the chosen observer embedding.
+
+No claim of collective consciousness or strong ontological emergence is made.
+
+Epistemological Status of Components
+Component	Status	Dependence	Note
+CCI	Definitional at theoretical level	Bin choice, MI estimator, sample size	Empirical estimation is estimator‑dependent
+DIG‑proxy	Provisional operationalization	Lag range, correlation method	Large gap between concept (compressibility) and proxy (cross‑correlation)
+LMS	Linear proxy	Number of components	Assumes linear capturability; collapses for nonlinear manifolds
+RCO	Visualization only	α, β, γ exponents	Not part of core pipeline
+SDCS	Meta‑theoretical criterion	Model class	Not yet directly operationalized; future work
+Regime	Property of description	Observer‑dependent	Not an intrinsic system property
+
+1. Conceptual Core: Regimes as Operational Classes of Descriptions
+This framework is not a “regime detector” in the sense of discovering an objective property of the system. Rather, it is a framework for assessing similarity of descriptions of dynamical systems under projective observers.
+
+A regime is not a property of the system. It is a property of the description under the operator (CCI, DIG‑proxy, LMS). Two different descriptions (different model classes, different parameter choices, different observer projections) are considered to belong to the same operational regime class if they fall within the same region of the observer projection space under a chosen distance metric. 
+This defines a similarity relation (not a formal equivalence relation, as transitivity is not guaranteed by the epsilon‑neighborhood criterion).
+
+SDCS (Shared Dynamical Coordinate System) is a meta‑theoretical selection criterion over families of models:
+
+A collective regime is hypothesized when the observer projections indicate that a lower‑dimensional description may provide a more parsimonious account of the observed dynamics than a decomposition into independent subsystem descriptions, after controlling for model complexity.
+
+The present framework does not demonstrate that DIG‑proxy and LMS constitute sufficient statistics for parsimony assessment. They are treated as heuristic indicators motivating future direct implementations of SDCS (e.g., cross‑validated prediction error, MDL, AIC/BIC, or Bayesian model comparison).
+
+Important: The SDCS is generally not identifiable without restricting the class of models under consideration. Different model classes may yield different SDCS criteria. This is not a limitation but a feature: the SDCS is a property of the description, not of the system.
+
+2. The Three Observer Projections
+2.1 CCI – Statistical Redundancy (Definitional at Theoretical Level)
+CCI(A,B)=I(A;B)min⁡(H(A),H(B))
+CCI(A,B)= 
+min(H(A),H(B))
+I(A;B)
+​
+ 
+CCI = 0 → independence
+
+CCI = 1 → full informational equivalence
+
+Status: Definitional at the theoretical level. However, empirical estimation depends on choice of MI estimator, discretization (bin count), sample size, and bias corrections.
+
+Dependence: Bin choice (default 30), MI estimator (histogram‑based in this implementation).
+
+2.2 DIG‑proxy – Model Sensitivity (Provisional Operationalization)
+Conceptual definition: Difference in compressibility between joint and separate models.
+
+Operational proxy (this implementation): Cross‑correlation with lag optimization.
+Explicitly labeled DIG‑proxy to distinguish the provisional operationalization from the conceptual definition. For stronger claims, replace with proper cross‑validated prediction error comparison (e.g., VAR, neural networks).
+
+DIG‑proxy≈max⁡τ∣corr(x(t),y(t+τ))∣auto_corr(x)+ϵ
+DIG‑proxy≈ 
+auto_corr(x)+ϵ
+max 
+τ
+​
+ ∣corr(x(t),y(t+τ))∣
+​
+ 
+Status: Provisional operationalization – no canonical estimator exists. The gap between the conceptual definition (compressibility difference) and this proxy is significant. Results should be interpreted as approximate indicators, not as precise measures of model sensitivity.
+
+2.3 LMS – Projection Stability (Linear Proxy)
+Conceptual definition: Temporal persistence of the latent projection trajectory.
+
+Operational proxy (this implementation): Autocorrelation of the first principal component.
+
+LMS=corr(z(t),z(t+1))
+LMS=corr(z(t),z(t+1))
+where z(t)z(t) is the first PC of the joint state space.
+
+Status: Linear proxy – assumes the regime is linearly capturable via PCA. In systems with nonlinear manifolds (curved attractors, topological structures), this proxy collapses. Future work should replace this with nonlinear manifold learning (ISOMAP, UMAP, autoencoders) or perturbation‑based stability measures.
+
+2.4 RCO – Visualization Only (Not Part of Core Pipeline)
+E=CCIα⋅DIG‑proxyβ⋅LMSγ
+E=CCI 
+α
+ ⋅DIG‑proxy 
+β
+ ⋅LMS 
+γ
+ 
+RCO=E+LMS2
+RCO= 
+2
+E+LMS
+​
+ 
+Default exponents: α=0.3, β=0.4, γ=0.3α=0.3,β=0.4,γ=0.3
+
+Status: Arbitrary aggregation functional – visualization only. RCO is not used for classification. It is computed in a separate layer (appendix/post‑processing) and does not affect the core pipeline.
+
+3. Observer Projection Space and Operational Regime Classes
+3.1 The Observer Projection Space
+The framework projects system descriptions onto a 3D observer space (CCI, DIG‑proxy, LMS). This is one of many possible observer embeddings. The topology of the regime space depends on the chosen observer embedding. Alternative embeddings include:
+
+Alternative embedding	What it captures	Status
+Mutual information graph space	Pairwise redundancies	Future work
+Spectral embedding (Laplacian)	Global manifold structure	Invariant to coordinate choices
+Delay‑coordinate (Takens)	Reconstructed dynamics	Theoretically justified for attractors
+Nonlinear manifold (ISOMAP, UMAP)	Curved regimes	Captures nonlinear structures
+Persistent homology	Topological features	Captures shape of regime space
+The current choice (CCI, DIG‑proxy, LMS) is a baseline observer projection. Euclidean distance is used as a convenience metric and has no privileged theoretical status.
+
+3.2 Multivariate Classification (Not RCO‑Based)
+Classification is based on the 3D vector (CCI, DIG‑proxy, LMS). The following regions were empirically observed in synthetic data. These thresholds are heuristic descriptors of regions in observer space, not universal laws. 
+They are calibrated on the specific synthetic data shown and require domain‑specific calibration for other applications.
+
+Regime (heuristic label)	CCI	DIG‑proxy	LMS	Characterization
+Weak coupling	Low (< 0.1)	Low (< 0.1)	Low (< 0.1)	Origin cluster
+Partial synchronization	High (> 0.4)	High (> 0.8)	High (> 0.9)	High redundancy
+Metastable collective (latent‑mediated)	Low (< 0.2)	Low–Moderate	High (> 0.9)	Low redundancy, high stability
+Important: These labels are heuristic descriptors and should not be interpreted as naturally occurring categories. They serve only to facilitate communication about regions in observer projection space.
+
+Classification does NOT depend on RCO.
+
+3.3 Operational Regime Classes Under a Distance Metric
+Two descriptions are considered to belong to the same operational regime class if they fall within the same epsilon‑neighborhood in the (CCI, DIG‑proxy, LMS) space under a chosen distance metric. 
+This defines a similarity relation (not a formal equivalence relation, as transitivity is not guaranteed).
+
+Metric (default): Euclidean distance in the normalized 3D space:
+
+d(v1,v2)=(ΔCCI)2+(ΔDIG‑proxy)2+(ΔLMS)2
+d(v 
+1
+​
+ ,v 
+2
+​
+ )= 
+(ΔCCI) 
+2
+ +(ΔDIG‑proxy) 
+2
+ +(ΔLMS) 
+2
+ 
+​
+ 
+Criterion for same operational class: d(v1,v2)<εd(v 
+1
+​
+ ,v 
+2
+​
+ )<ε, where εε is a domain‑specific threshold (e.g., ε=0.15ε=0.15 for the synthetic data shown). This choice is arbitrary – a practical threshold calibrated on synthetic data, not derived from first principles.
+
+Epsilon‑neighborhood implementation: The algorithm that propagates labels based on pairwise distances is a practical clustering heuristic and should not be interpreted as a canonical realization of the similarity relation. The resulting classes may depend on the order of processing when transitivity fails.
+
+Alternative approach: Clustering algorithms (e.g., DBSCAN, k‑means) can be used without predefined thresholds. In the synthetic demonstration, DBSCAN with eps=0.15 and min_samples=1 yields the same three clusters. Note: The DBSCAN example is illustrative only and is not intended as evidence for intrinsic cluster structure.
+
+Important: Different observer projection spaces yield different operational regime classes. The choice of observer projection is part of the framework’s flexibility, not a weakness.
+
+4. Code Implementation
+(The code remains functionally identical to the previous version, but with comments and print statements adjusted to reflect the epistemological framing. The class name CollectiveRegimesDetector is retained for compatibility; conceptually it is an “observer projection system”.)
+
+python
+import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from scipy.stats import pearsonr
+from sklearn.cluster import DBSCAN
+import warnings
+warnings.filterwarnings('ignore')
+
+class CollectiveRegimesDetector:
+    """
+    Observer projection system for collective regime analysis.
+    Based on IPM Scientific Core v2.3.
+    This is ONE observer embedding among many possible.
+    """
+
+    def __init__(self, n_components=2):
+        self.n_components = n_components
+
+    def _mutual_information(self, x, y, bins=30):
+        hist_2d, _, _ = np.histogram2d(x, y, bins=bins)
+        hist_2d = hist_2d / (hist_2d.sum() + 1e-12)
+        hist_x = hist_2d.sum(axis=1)
+        hist_y = hist_2d.sum(axis=0)
+        mi = 0.0
+        for i in range(bins):
+            for j in range(bins):
+                if hist_2d[i, j] > 0:
+                    mi += hist_2d[i, j] * np.log2(hist_2d[i, j] / (hist_x[i] * hist_y[j] + 1e-12))
+        return mi
+
+    def _entropy(self, x, bins=30):
+        hist, _ = np.histogram(x, bins=bins, density=True)
+        hist = hist / (hist.sum() + 1e-12)
+        hist = hist[hist > 0]
+        return -np.sum(hist * np.log2(hist))
+
+    def cci(self, x, y):
+        """Statistical redundancy (definitional at theoretical level)."""
+        mi = self._mutual_information(x, y)
+        hx = self._entropy(x)
+        hy = self._entropy(y)
+        min_h = min(hx, hy)
+        return mi / min_h if min_h > 0 else 0.0
+
+    def dig_proxy(self, x, y):
+        """
+        Model sensitivity - provisional operationalization (cross-correlation).
+        Large gap between concept (compressibility) and this proxy.
+        """
+        max_lag = 20
+        best_corr = 0.0
+        for lag in range(-max_lag, max_lag + 1):
+            if lag < 0:
+                x_slice = x[:lag]
+                y_slice = y[-lag:]
+                if len(x_slice) == 0 or len(y_slice) == 0:
+                    continue
+                corr = abs(pearsonr(x_slice, y_slice)[0])
+            elif lag > 0:
+                x_slice = x[lag:]
+                y_slice = y[:-lag]
+                if len(x_slice) == 0 or len(y_slice) == 0:
+                    continue
+                corr = abs(pearsonr(x_slice, y_slice)[0])
+            else:
+                corr = abs(pearsonr(x, y)[0])
+            if not np.isnan(corr):
+                best_corr = max(best_corr, corr)
+        auto_corr = abs(pearsonr(x[:-1], x[1:])[0]) if len(x) > 1 else 0.0
+        if np.isnan(auto_corr) or auto_corr < 0.05:
+            return best_corr
+        dig_val = min(1.0, best_corr / (auto_corr + 0.01))
+        return np.clip(dig_val, 0.0, 1.0)
+
+    def lms(self, x, y):
+        """
+        Projection stability proxy (PCA autocorrelation).
+        LINEAR PROXY: collapses for nonlinear manifolds.
+        """
+        joint = np.column_stack([x, y])
+        if len(joint) < self.n_components + 1:
+            return 0.0
+        scaler = StandardScaler()
+        joint_norm = scaler.fit_transform(joint)
+        pca = PCA(n_components=min(self.n_components, joint_norm.shape[1]))
+        latent = pca.fit_transform(joint_norm)
+        z = latent[:, 0]
+        if np.std(z) < 1e-10:
+            return 0.0
+        autocorr = np.corrcoef(z[:-1], z[1:])[0, 1]
+        if np.isnan(autocorr):
+            autocorr = 0.0
+        return np.clip(autocorr, 0.0, 1.0)
+
+    def fit(self, x, y):
+        """Return observer projections (multivariate)."""
+        return {
+            'CCI': self.cci(x, y),
+            'DIG-proxy': self.dig_proxy(x, y),
+            'LMS': self.lms(x, y)
+        }
+
+
+def compute_rco(cci, dig_proxy, lms, alpha=0.3, beta=0.4, gamma=0.3):
+    """RCO - arbitrary aggregation functional (visualization only)."""
+    e = (cci ** alpha) * (dig_proxy ** beta) * (lms ** gamma)
+    rco = (e + lms) / 2
+    return np.clip(rco, 0.0, 1.0)
+
+
+def regime_classification(vectors, epsilon=0.15, metric='euclidean', method='epsilon'):
+    """
+    Determine operational regime classes (similarity-based).
+    This is a practical clustering heuristic, not a canonical realization.
+    """
+    from scipy.spatial.distance import cdist
+    vectors = np.array(vectors)
+
+    if method == 'epsilon':
+        n = len(vectors)
+        distances = cdist(vectors, vectors)
+        classes = [-1] * n
+        current_class = 0
+        for i in range(n):
+            if classes[i] == -1:
+                classes[i] = current_class
+                for j in range(i + 1, n):
+                    if classes[j] == -1 and distances[i, j] < epsilon:
+                        classes[j] = current_class
+                current_class += 1
+        return classes
+
+    elif method == 'dbscan':
+        clustering = DBSCAN(eps=epsilon, min_samples=1, metric=metric)
+        labels = clustering.fit_predict(vectors)
+        return labels.tolist()
+
+    else:
+        raise ValueError(f"Method {method} not implemented")
+
+
+# Synthetic data generators (independent, synchronized, latent-mediated)
+def independent_systems(T=3000):
+    return np.random.randn(T), np.random.randn(T)
+
+def synchronized_oscillators(T=3000, dt=0.01, K=0.6):
+    omega1, omega2 = 1.0, 1.2
+    theta1 = np.zeros(T)
+    theta2 = np.zeros(T)
+    theta1[0] = 0.0
+    theta2[0] = 0.5
+    for i in range(1, T):
+        dtheta1 = (omega1 + K * np.sin(theta2[i-1] - theta1[i-1])) * dt
+        dtheta2 = (omega2 + K * np.sin(theta1[i-1] - theta2[i-1])) * dt
+        theta1[i] = theta1[i-1] + dtheta1 + 0.05 * np.random.randn() * np.sqrt(dt)
+        theta2[i] = theta2[i-1] + dtheta2 + 0.05 * np.random.randn() * np.sqrt(dt)
+    return np.sin(theta1), np.sin(theta2)
+
+def latent_mediated_coupling(T=3000, dt=0.01, coupling=1.5):
+    sigma, rho, beta = 10.0, 28.0, 8.0/3.0
+    x1, y1, z1 = np.zeros(T), np.zeros(T), np.zeros(T)
+    x2, y2, z2 = np.zeros(T), np.zeros(T), np.zeros(T)
+    x1[0], y1[0], z1[0] = 1.0, 1.0, 1.0
+    x2[0], y2[0], z2[0] = 1.1, 1.1, 1.1
+    z_hidden = 0.0
+    for i in range(1, T):
+        dx1 = (sigma * (y1[i-1] - x1[i-1]) + coupling * z_hidden) * dt
+        dy1 = (x1[i-1] * (rho - z1[i-1]) - y1[i-1]) * dt
+        dz1 = (x1[i-1] * y1[i-1] - beta * z1[i-1]) * dt
+        dx2 = (sigma * (y2[i-1] - x2[i-1]) + coupling * z_hidden) * dt
+        dy2 = (x2[i-1] * (rho - z2[i-1]) - y2[i-1]) * dt
+        dz2 = (x2[i-1] * y2[i-1] - beta * z2[i-1]) * dt
+        dz_hidden = 0.5 * (z1[i-1] + z2[i-1] - 2 * z_hidden) * dt
+        x1[i] = x1[i-1] + dx1 + 0.05 * np.random.randn() * np.sqrt(dt)
+        y1[i] = y1[i-1] + dy1 + 0.05 * np.random.randn() * np.sqrt(dt)
+        z1[i] = z1[i-1] + dz1 + 0.05 * np.random.randn() * np.sqrt(dt)
+        x2[i] = x2[i-1] + dx2 + 0.05 * np.random.randn() * np.sqrt(dt)
+        y2[i] = y2[i-1] + dy2 + 0.05 * np.random.randn() * np.sqrt(dt)
+        z2[i] = z2[i-1] + dz2 + 0.05 * np.random.randn() * np.sqrt(dt)
+        z_hidden += dz_hidden
+    return x1 + y1 + z1, x2 + y2 + z2
+
+
+if __name__ == "__main__":
+    print("=" * 70)
+    print("OBSERVER PROJECTION SYSTEM FOR COLLECTIVE REGIME ANALYSIS")
+    print("Based on IPM Scientific Core v2.3")
+    print("=" * 70)
+    print("\nEPISTEMOLOGICAL NOTE:")
+    print(" This is a framework for assessing SIMILARITY OF DESCRIPTIONS")
+    print(" Regimes correspond to operational classes in observer projection space")
+    print(" The (CCI, DIG-proxy, LMS) space is ONE observer embedding among many")
+    print("=" * 70 + "\n")
+
+    detector = CollectiveRegimesDetector()
+    scenarios = [
+        ("INDEPENDENT", independent_systems),
+        ("SYNCHRONIZED", synchronized_oscillators),
+        ("LATENT-MEDIATED", latent_mediated_coupling)
+    ]
+    results_list = []
+    vectors = []
+
+    print("RESULTS (observer projections - multivariate):")
+    print("-" * 55)
+
+    for name, generator in scenarios:
+        T = 4000
+        x, y = generator(T)
+        x = x[T//3:]
+        y = y[T//3:]
+        res = detector.fit(x, y)
+        results_list.append((name, res))
+        vectors.append((res['CCI'], res['DIG-proxy'], res['LMS']))
+        rco = compute_rco(res['CCI'], res['DIG-proxy'], res['LMS'])
+
+        print(f"\n{name}")
+        print(f"  CCI = {res['CCI']:.4f} (definitional at theoretical level)")
+        print(f"  DIG-proxy = {res['DIG-proxy']:.4f} (provisional operationalization)")
+        print(f"  LMS = {res['LMS']:.4f} (linear proxy)")
+        print(f"  RCO = {rco:.4f} (visualization only)")
+
+        if res['CCI'] < 0.1 and res['DIG-proxy'] < 0.1 and res['LMS'] < 0.1:
+            regime = "WEAK_COUPLING"
+        elif res['CCI'] > 0.4 and res['DIG-proxy'] > 0.8 and res['LMS'] > 0.9:
+            regime = "PARTIAL_SYNCHRONIZATION"
+        elif res['CCI'] < 0.2 and res['LMS'] > 0.9:
+            regime = "METASTABLE_COLLECTIVE (latent-mediated)"
+        else:
+            regime = "TRANSITIONAL"
+        print(f"  Regime (heuristic label): {regime}")
+
+    print("\n" + "=" * 70)
+    print("OPERATIONAL REGIME CLASSES (similarity-based)")
+    print("=" * 70)
+
+    classes_eps = regime_classification(vectors, epsilon=0.15, method='epsilon')
+    classes_dbscan = regime_classification(vectors, epsilon=0.15, method='dbscan')
+    class_names = {0: "Weak coupling", 1: "Partial synchronization", 2: "Metastable collective (latent-mediated)"}
+
+    print("\nEpsilon-neighborhood (ε = 0.15):")
+    for (name, _), cls in zip(results_list, classes_eps):
+        print(f"  {name}: {class_names[cls]}")
+
+    print("\nDBSCAN (eps = 0.15, min_samples = 1):")
+    for (name, _), cls in zip(results_list, classes_dbscan):
+        print(f"  {name}: {class_names[cls]}")
+
+    print("\n" + "=" * 70)
+    print("EPISTEMOLOGICAL STATUS")
+    print("=" * 70)
+    print("""
+CORE FRAMEWORK:
+- This is a framework for assessing SIMILARITY OF DESCRIPTIONS
+- Regimes correspond to operational classes in observer projection space
+- The (CCI, DIG-proxy, LMS) space is ONE observer embedding among many
+- The topology of the regime space depends on the chosen embedding
+- Euclidean distance is a convenience metric, not privileged
+
+COMPONENT STATUS:
+- CCI: definitional at theoretical level; empirical estimation estimator-dependent
+- DIG-proxy: provisional – large gap between concept (compressibility) and proxy
+- LMS: linear proxy – collapses for nonlinear manifolds
+- RCO: visualization only (separate layer)
+- SDCS: meta-theoretical criterion; not yet directly operationalized
+- Regime: property of the description under the operator
+
+OPERATIONAL REGIME CLASSES:
+- Defined by similarity in (CCI, DIG-proxy, LMS) space
+- Metric: Euclidean distance (ε = 0.15) or DBSCAN clustering
+- This defines a similarity relation, not a formal equivalence relation
+- Epsilon-neighborhood algorithm is a practical heuristic, not a canonical realization
+- Threshold ε is arbitrary; requires domain calibration
+
+LIMITATIONS:
+- Synthetic data only (no empirical validation)
+- DIG-proxy: cross-correlation does not measure compressibility
+- LMS: linear proxy – nonlinear manifolds not captured
+- RCO: arbitrary parameters
+- SDCS: not directly operationalized (conceptual only)
+- Classification labels are heuristic descriptors, not natural kinds
+- Statistical robustness shown only for stochastic variation under the tested parameterization
+- Parameter sensitivity (bin count, lag range, noise level, coupling strength, T) not explored
+- DBSCAN example illustrative only; not evidence for intrinsic cluster structure
+
+NEXT STEPS:
+- Replace DIG-proxy with cross-validated prediction error (VAR, neural networks)
+- Replace LMS with nonlinear manifold learning (ISOMAP, UMAP, autoencoders)
+- Test alternative observer embeddings (MI graph space, spectral embedding)
+- Validate on real-world datasets
+- Formalize SDCS as a model selection criterion (AIC/BIC/MDL) and implement directly
+- Conduct systematic parameter sensitivity analysis
+- Formalize the space of admissible observer projections
+""")
+    print("=" * 70)
+5. Results (Ensemble Statistics – 100 Runs)
+The three scenarios were each simulated 100 times (different random seeds). The table reports mean ± standard deviation for each metric. Heuristic labels are applied per run; agreement shows the percentage of runs receiving the expected label.
+
+Scenario	Metric	Mean ± Std	Agreement (%)
+INDEPENDENT	CCI	0.0409 ± 0.0028	100% (Weak coupling)
+DIG‑proxy	0.0471 ± 0.0080	
+LMS	0.0094 ± 0.0129	
+SYNCHRONIZED	CCI	0.5882 ± 0.0156	100% (Partial synchronization)
+DIG‑proxy	0.9892 ± 0.0003	
+LMS	0.9999 ± 0.0000	
+LATENT‑MEDIATED	CCI	0.1074 ± 0.0146	100% (Metastable collective)
+DIG‑proxy	0.1455 ± 0.0711	
+LMS	0.9969 ± 0.0003	
+Notes:
+
+The independent scenario shows near‑zero values, consistent with absence of coupling.
+
+The synchronized scenario exhibits high redundancy (CCI > 0.55), strong cross‑predictability (DIG‑proxy ≈ 0.99), and extremely stable projection (LMS ≈ 1.0).
+
+The latent‑mediated scenario shows low CCI but high LMS – a combination not observed elsewhere. All runs satisfied the heuristic criterion (CCI < 0.2 and LMS > 0.9).
+
+Operational regime classes (ε = 0.15): Each scenario falls into its own class in all 100 runs. The reported separation is robust under stochastic variation for the tested parameterization only.
+
+Illustrative single run (values close to the means):
+
+text
+INDEPENDENT:       CCI = 0.0382, DIG-proxy = 0.0468, LMS = 0.0000
+SYNCHRONIZED:      CCI = 0.5990, DIG-proxy = 0.9894, LMS = 0.9999
+LATENT-MEDIATED:   CCI = 0.1047, DIG-proxy = 0.1378, LMS = 0.9973
+6. Alternative Observer Embeddings
+The current observer projection space is one of many possibilities. The topology of the regime space depends on the chosen embedding. Euclidean distance is a convenience metric with no privileged status. 
+Future work should explore embeddings such as mutual information graphs, spectral (Laplacian) embeddings, delay coordinates, nonlinear manifolds (ISOMAP, UMAP), or persistent homology.
+
+7. Limitations (Explicit)
+Limitation	Description
+Synthetic validation only	No empirical validation in real‑world datasets
+DIG‑proxy	Cross‑correlation does not measure compressibility
+LMS	Linear proxy – collapses for nonlinear manifolds
+Observer embedding	One of many possible choices; others may yield different classes
+Threshold ε = 0.15	Arbitrary; requires domain calibration
+RCO	Arbitrary parameters; visualization only
+SDCS	Not directly operationalized (conceptual only)
+Classification labels	Heuristic descriptors, not natural kinds
+Robustness	Demonstrated only for stochastic variation under the tested parameterization
+Epsilon‑neighborhood	Practical clustering heuristic; not a canonical realization of the similarity relation; order‑dependent when transitivity fails
+DBSCAN	Illustrative only; not evidence for intrinsic cluster structure
+8. Conclusion
+This framework is an observer‑projection system for analyzing collective regimes in coupled dynamical systems. Its deeper contribution is epistemological:
+
+It is a framework for assessing similarity of descriptions of dynamical systems under projective observers. Regimes correspond to operational classes of descriptions in the observer projection space (CCI, DIG‑proxy, LMS) – one of many possible embeddings. 
+The topology of the regime space depends on the chosen observer embedding. Euclidean distance is a convenience metric with no privileged theoretical status.
+
+CCI: definitional at theoretical level; empirical estimation estimator‑dependent.
+
+DIG‑proxy: provisional operationalization – large gap between concept (compressibility) and proxy.
+
+LMS: linear proxy – collapses for nonlinear manifolds.
+
+RCO: visualization only.
+
+Operational regime classes are defined by similarity in the observer space (Euclidean distance with ε‑neighborhood or DBSCAN clustering). This defines a similarity relation, not a formal equivalence relation (transitivity not guaranteed). The epsilon‑neighborhood algorithm is a practical heuristic, not a canonical realization.
+
+The SDCS is a meta‑theoretical criterion not yet directly operationalized. Direct implementation using cross‑validated prediction error, MDL, or Bayesian comparison remains future work. “Regime” is a property of the description under the operator, not an intrinsic system property.
+
+Ensemble statistics (100 runs) indicate that the three synthetic scenarios produce separable operational classes under the tested parameterization, with 100% agreement for stochastic variation. Systematic parameter sensitivity analysis and empirical validation remain for future work.
