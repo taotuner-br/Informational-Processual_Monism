@@ -1,0 +1,91 @@
+Lack Kernel – Minimal Stability Core
+Author: Taotuner
+Date: May 2026
+DOI: https://doi.org/10.5281/zenodo.20479446
+
+1. What It Is
+The Lack Kernel is the smallest functional piece of the IPM framework.
+It measures how a system's internal coherence breaks down when you push it with noise.
+
+It works like this:
+
+State is always trying to catch up with a slow memory.
+
+Lack adds random kicks.
+
+Coherence = how aligned state and memory are.
+
+The rule is simple: more lack → less coherence.
+Nothing else.
+
+2. Where You Can Plug It
+
+Drop this kernel anywhere you need a real‑time stability signal:
+
+Adaptive games – player error = lack, game speed = max × coherence
+
+NPC behavior – coherence < 0.6 → switch to erratic mode
+
+Robot control – motor torque = max × coherence
+
+AI exploration – action noise = base / (coherence + 0.1)
+
+Swarm cohesion – agent speed = base × coherence
+
+You can also run many kernels at once, each watching a different signal, silently, across sensors, agents, or UI layers.
+The kernel just returns a number. You decide what to do with it.
+
+3. Results (100 runs per condition)
+
+Lack	Coherence (mean ± std)
+0.02	0.974 ± 0.004
+0.15	0.844 ± 0.019
+0.25	0.777 ± 0.025
+0.35	0.727 ± 0.028
+0.80	0.602 ± 0.028
+1.20	0.546 ± 0.027
+Strictly decreasing. More lack = less stability.
+
+4. Conclusion
+The Lack Kernel gives you a measurable, repeatable relationship between stress and coherence loss.
+Use it as a stability meter, or as a building block for larger systems.
+
+For Φ*, collective regimes, or inverted‑U dynamics, see the full IPM Scientific Core.
+
+5. Code
+
+import torch
+import numpy as np
+
+class LackKernel:
+    def __init__(self, dim=32):
+        self.state = torch.randn(dim) * 0.1
+        self.memory = self.state.clone()
+
+    def coherence(self):
+        return torch.exp(- (self.state - self.memory).abs().mean()).item()
+
+    def __call__(self, lack=0.0):
+        self.state += 0.15 * (self.memory - self.state) + lack * torch.randn_like(self.state)
+        self.state = torch.tanh(self.state)
+        self.memory = 0.96 * self.memory + 0.04 * self.state
+        return self.coherence()
+
+# Example: run for one lack level
+if __name__ == "__main__":
+    lack_values = [0.02, 0.15, 0.25, 0.35, 0.80, 1.20]
+    results = {lack: [] for lack in lack_values}
+
+    for lack in lack_values:
+        for seed in range(100):
+            torch.manual_seed(seed)
+            motor = LackKernel()
+            for _ in range(200):
+                motor(0.0)
+            for _ in range(200):
+                motor(lack)
+            results[lack].append(motor.coherence())
+
+    for lack in lack_values:
+        arr = results[lack]
+        print(f"lack={lack:.2f} | mean={np.mean(arr):.3f} ± {np.std(arr):.3f}")
