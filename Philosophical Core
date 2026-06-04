@@ -1,0 +1,452 @@
+Informational-Processual Monism
+
+A Simulation-Grounded Fallibilist Ontology
+
+ 
+
+ 
+
+Author: Taotuner
+
+Date: June 2026
+
+Published on Zenodo
+
+ 
+
+Based on: IPM Computational Core — simulation experiments
+
+(Lack Kernel, Spectral Experiment, IPM Protocol, Collective Regimes Framework)
+
+ 
+
+
+ 
+
+Notes on Audience and Framework Evolution
+Note on Intended Audience
+This document is written primarily for philosophers of science and methodologists. Scientists seeking empirical details should consult the IPM Scientific Core and the companion technical reports on Zenodo. The ontological interpretation is offered as a revisable hypothesis, not a conclusive metaphysical system.
+
+ 
+
+Note on the Evolution of the Framework
+The earlier IPM Scientific Core (2026) treated information as a descriptive layer, while the ontological substrate was characterized as dissipative processes (energy, matter, flows). The present formulation revises that position. The robust simulation regularities (R1–R3) suggest that a stronger interpretation — informational as ontologically primitive — is coherent and parsimonious.
+
+This document presents that interpretation as a working hypothesis, not a logical necessity. It does not claim to supersede the earlier reading definitively, but to offer a more unified framework for interpretation.
+
+ 
+
+Opening Statement
+Informational-Processual Monism (IPM) offers a monist alternative to both substance dualism and reductive physicalism. It proposes that reality is fundamentally constituted by relational informational processes in continuous transformation — as a revisable, fallibilist hypothesis.
+
+ 
+
+These dynamics are described through the recursive sequence:
+
+ 
+
+Lack  →  Coupling  →  Integration  →  Persistence
+
+ 
+
+By "informational" is meant: difference that makes a difference to persistence, integration, and coherence — not Shannon entropy, not semantic content. This notion is operationalized through the simulation regularities: what persists under projection changes is what we call informational.
+
+The interpretation is abductive: the regularities are consistent with this ontology, not deduced from it. The framework is revisable, testable in principle, and open to critique.
+
+ 
+
+Reader's Guide
+The document is structured in three layers:
+
+•       L1 (Empirical Regularities): Observable patterns from simulations (R1–R3). The empirical anchor — understood as computational regularities that serve as abductive evidence.
+
+•       L2 (Ontological Interpretation): The monist hypothesis — reality as informational-processual.
+
+•       L3 (Optional Extensions): Implications for consciousness, ethics, and existential reflection (speculative).
+
+All claims are governed by epistemological constraints (C0–C4).
+
+ 
+
+Underlying architecture (three distinct layers):
+
+ 
+
+Layer
+
+What it is
+
+Status
+
+Φ*
+
+Dynamic regime marker
+
+Metric, heuristic, falsifiable
+
+𝒞
+
+Temporal compressibility estimator
+
+Scale-dependent estimator
+
+IPM ontology
+
+Monist interpretation (abduction from R1–R3)
+
+Philosophical thesis, revisable
+
+ 
+
+1. Empirical Regularities (L1)
+Multiple simulation families (Lack Kernel, Spectral Experiment, IPM Protocol, Collective Regimes Framework) produce three robust patterns (100 runs, ε=0.15, bins=30, max_lag=20). Full code, parameters, and metric definitions are available in the companion technical reports (Zenodo).
+
+ 
+
+R1 — Lack–Degradation
+
+Increased perturbation reduces coherence and predictive integration (Φ*/DIG-proxy). In the Lack Kernel, coherence decreases monotonically as noise rises from 0.02 to 1.2. In the IPM Protocol, Φ* drops ≈16% under thermal perturbation before recovering.
+
+ 
+
+R2 — Integration–Persistence
+
+Increased integration correlates with metastability and post-perturbation recovery. Higher integration yields longer persistence under moderate perturbation.
+
+ 
+
+R3 — Observed Clustering
+
+Under the tested observer projections (CCI, DIG-proxy, LMS) and simulation conditions, three coupling regimes formed separable clusters. Whether this reflects a property of the systems or an artifact of the chosen projections is not determined. Generalization beyond simulation contexts is not established.
+
+ 
+
+These are computational regularities from simulations, not universal invariants.
+
+ 
+
+2. Ontological Interpretation (L2)
+2.1 The Core Claim (as Working Hypothesis)
+The recurrence of R1–R3 across different simulation families, projection regimes, and parameter choices is consistent with the hypothesis that the reality which these simulations model (and, by cautious extrapolation as a working hypothesis, reality more generally) consists of relational informational processes in continuous transformation.
+
+This extrapolation is not a logical deduction but an abductive inference. It stands or falls with the success of empirical tests in non-simulated domains (see Section 6 – Falsifiability).
+
+This is classical monism (as a hypothesis): only one fundamental kind of reality may exist — informational-processual dynamics. Matter and mind would be stabilized patterns of these processes, not separate substances.
+
+ 
+
+Anti-idealist qualification: Informational processes are always realized in non-equilibrium physical dynamics (gradients, flows, dissipation). The claim is not that information floats free of physical substrates. Rather, what is hypothesized as ontologically primitive is the relational-informational structure, not the substance in which it is instantiated.
+
+ 
+
+L1 → L2 Bridge (Underdetermination Acknowledgment)
+The inference from R1–R3 to an informational-processual ontology is abductive, not deductive. Other interpretations are possible (e.g., standard physical dynamics with a mere change of descriptive language). The claim is not that the monist interpretation is logically necessary, but that it is more parsimonious under the criteria of: (i) unification of distinct domains under a single entity type, (ii) elimination of substantial dualisms, and (iii) consistency with the simulation regularities. A critic may reject this parsimony; the framework does not claim apodicticity.
+
+ 
+
+2.2 Why "Informational"?
+Note on ambiguity: The reader may distinguish two readings:
+
+  Weak (epistemological): "informational" refers only to useful descriptions for modeling systems.
+
+  Strong (ontological): "informational" refers to a primitive constituent of reality.
+
+L2 explicitly adopts the strong reading as a hypothesis. The weak reading corresponds to the Scientific Core, which remains agnostic.
+
+ 
+
+Information here means relational difference that modulates the trajectory of a system under perturbation, as operationalized by the simulation regularities (R1–R3). It is not Shannon entropy or semantic content.
+
+On "structural identity": The phrase "capacity to remain sensitive to perturbation while maintaining structural identity" refers operationally to stability of predictive integration (Φ*) under perturbation — i.e., the system returns to a similar dynamic regime after perturbation. No metaphysical notion of "same structure" is assumed.
+
+ 
+
+2.3 The Dynamic Signature: Lack → Coupling → Integration → Persistence
+The sequence below is empirically observed in simulated dissipative systems. It is not proposed as a universal law or necessary causal direction, but as a testable pattern of dependence:
+
+ 
+
+Concept
+
+Operationalization
+
+Lack (L)
+
+Deviation from a reference state: perturbation magnitude, gradient intensity, or prediction error.
+
+Coupling (C)
+
+Interaction between subsystems: information exchange, mutual influence.
+
+Integration (I)
+
+Emergence of stable, coherent wholes from coupled elements (measured via Φ* or cluster coherence).
+
+Persistence (P)
+
+Temporal stability under continued or renewed perturbation (measured via recovery time or coherence retention).
+
+ 
+
+Observable prediction: In systems where L, C, I, P are measurable, they appear in this temporal order. Falsification: Empirical observation of a system where I or P occurs without prior L or C would weaken the framework.
+
+ 
+
+2.4 Monism as a Testable Hypothesis
+This ontology is not a dogma. It would be weakened if:
+
+•       R1–R3 fail to replicate in new simulation families or independent labs (programmatic falsification: systematic non-replication, not a single failure).
+
+•       The inverted-U pattern (moderate lack → optimal integration) is not general.
+
+•       Systems at thermodynamic equilibrium exhibit the same dynamics.
+
+•       Alternative interpretations (dualist, physicalist) prove more coherent.
+
+ 
+
+2.5 Model Equivalence Criterion (Provisional)
+Different formalizations (e.g., Φ* vs 𝒞, different observer projections) are considered to describe the same underlying phenomenon if:
+
+•       Stable empirical correlation — the metrics covary across regime shifts in the same systems.
+
+•       Limited reparameterization invariance — relative values persist under alternative parameter choices within justified ranges.
+
+•       Convergent discrimination power — different formalizations agree on the location of regime boundaries.
+
+ 
+
+Negative criterion: If two formalizations produce systematically different regime classifications under the same empirical conditions, they describe distinct phenomena.
+
+ 
+
+Currently, Φ* and 𝒞 do not meet this equivalence criterion. Unification is a research direction, not an established result. IPM is currently a family of descriptions, not a unified theory — a provisional limit.
+
+ 
+
+2.6 Operational Differentiation of Core Concepts
+Concept
+
+Operational Definition
+
+What Would Change If False
+
+Lack
+
+Perturbation magnitude, gradient intensity, prediction error
+
+Systems maintain coherence regardless of perturbation (contradicts R1)
+
+Coupling
+
+Mutual information, transfer entropy, CCI
+
+No regime separability (R3 fails)
+
+Integration
+
+Φ* values above baseline, cluster coherence
+
+No correlation between integration and persistence (R2 fails)
+
+Persistence
+
+Recovery time, coherence retention under perturbation
+
+Integration shows no predictive value for stability (R2 fails)
+
+ 
+
+3. Implications for Consciousness (L3 — Speculative)
+The hard problem (Chalmers) is not solved by IPM. The framework reformulates it: consciousness is not an anomalous emergent property of matter, but a natural expression of informational-processual dynamics at high levels of integration — as a hypothesis for investigation, not a conclusion.
+
+The relational signature — Lack → Coupling → Integration → Persistence — appears in systems to which we attribute consciousness (mammalian brains, complex cognitive architectures). This does not explain qualia, but shifts the question from metaphysical deadlock to empirical-structural investigation.
+
+IPM does not claim that every integrated system is conscious. It claims that whenever consciousness is attributed, the attribution correlates with this signature — as an empirical hypothesis to test, not an a priori truth.
+
+ 
+
+4. Ethics: The Gradient Precautionary Heuristic (L3 — Speculative)
+Anchoring note (speculative): The following heuristic is not derived from R1–R3 and has no quantitative thresholds. It is offered as a qualitative guideline under structural uncertainty, not as an operational rule.
+
+ 
+
+Systems that exhibit high integration, self-modelling, and stability under moderate lack may warrant cautious moral consideration — not because they are proven conscious, but because the cost of false negative (neglecting a sentient system) is asymmetric to the cost of false positive (treating a non-sentient system as if it were). This is a precautionary heuristic, not a conclusion about consciousness.
+
+Weakness acknowledged: The ontological justification for this heuristic ("ontological kinship") is rhetorical, not formal. The heuristic stands on pragmatic precautionary grounds, not on metaphysical derivation. A critic may reject the ontological framing entirely and still accept the heuristic for independent reasons.
+
+ 
+
+5. Epistemological Constraints (C0–C4)
+Constraint
+
+Statement
+
+C0 — Realist but cautious
+
+The framework asserts that reality is informational-processual, but only as a revisable hypothesis, not a self-evident truth.
+
+C1 — Stability
+
+Interpretations must be stable under projection changes (metrics, parameters) and across experiments.
+
+C2 — Prohibition
+
+No reification of isolated metrics, thresholds, or confusion of organisational with phenomenal. Φ* is not claimed to measure consciousness.
+
+C3 — Fallibilism
+
+All claims are revisable in light of new evidence or better interpretations.
+
+C4 — Cautious extrapolation
+
+Cross-domain inference is allowed as a working hypothesis, but must be explicitly justified and tested.
+
+ 
+
+6. Falsifiability and Limitations
+Weakening Conditions (Programmatic)
+•       Systematic failure of R1–R3 to replicate across new simulation families or independent labs.
+
+•       Breakdown of invariance under projection transformations.
+
+•       Loss of the inverted-U pattern under systematic parameter variation.
+
+•       Discovery of systems at thermodynamic equilibrium exhibiting the same patterns.
+
+ 
+
+Falsification per Concept
+Concept
+
+Specific Falsification Condition
+
+Lack
+
+Increasing perturbation never reduces coherence (global counterexample to R1)
+
+Coupling
+
+Failure of R3 under any observer projection
+
+Integration
+
+Zero correlation between Φ* and persistence across multiple system types
+
+Persistence
+
+Recovery time uncorrelated with pre-perturbation integration
+
+Dynamic signature
+
+I or P occurring without prior L or C in a dissipative system
+
+ 
+
+Acknowledged Limitations
+•       Empirical base limited to four synthetic simulation families.
+
+•       Dependence on chosen observables and parameters.
+
+•       Risk of "simulation echo chamber" (mitigated by multiple families, but risk remains).
+
+•       Concept of Lack remains underdeveloped formally.
+
+•       Ontological interpretation is abductive, not deductive.
+
+•       Circularity acknowledged: R1–R3 may partially reflect design assumptions of the simulations.
+
+ 
+
+7. What IPM Is NOT (Explicit Bounding)
+IPM is NOT…
+
+Explanation
+
+A theory of consciousness
+
+No explanation of qualia, no claim that Φ* or 𝒞 measure consciousness.
+
+A fundamental physical theory
+
+Does not replace quantum field theory or general relativity.
+
+A variant of classical information theory
+
+Its notion of "informational" is not reducible to Shannon entropy.
+
+A universal computational ontology
+
+No claim that reality is a computation.
+
+Panpsychism
+
+Does not attribute subjective experience to all systems.
+
+Idealism
+
+Informational processes are always realized in non-equilibrium physical dynamics.
+
+ 
+
+8. Related Work
+IPM dialogues with, but is independent of, the following frameworks:
+
+Framework
+
+Point of Contact
+
+Structural Realism (Worrall, Ladyman)
+
+Shares priority of relational structure.
+
+Predictive Processing / Free Energy Principle (Friston)
+
+Φ* resonates with minimisation of surprise.
+
+Integrated Information Theory (Tononi)
+
+Correlation of integration with persistence; IPM rejects Φ as a measure of consciousness.
+
+Process Philosophy (Whitehead, Simondon)
+
+Informational-processual thinking.
+
+Informational Ontology (Wheeler, Floridi)
+
+Operationalizes "information" as difference-making persistence.
+
+ 
+
+What IPM adds: a monist hypothesis grounded in simulation regularities; a dynamic signature (Lack → Coupling → Integration → Persistence); explicit epistemological constraints; a differentiated falsification protocol; and a testable, revisable framework.
+
+ 
+
+9. Conclusion
+Informational-Processual Monism is offered as a revisable, fallibilist, monist hypothesis: reality may be fundamentally constituted by relational informational processes in continuous transformation. This is a genuine alternative to dualism, reductionist physicalism, and idealism — not as a proven truth, but as a working hypothesis that invites falsification.
+
+The framework is grounded in simulation regularities (R1–R3), organized through the descriptive pattern Lack → Coupling → Integration → Persistence, and governed by explicit epistemological constraints.
+
+ 
+
+Repository and Code Access
+All simulation code, parameter files, and raw data are available at Zenodo.
+
+Core experiments: Lack Kernel, Spectral Experiment, IPM Protocol, Collective Regimes Framework.
+
+ 
+
+References
+Chalmers, D. (1996). The Conscious Mind. Oxford University Press.
+
+Friston, K. (2010). The free-energy principle. Nature Reviews Neuroscience, 11(2), 127–138.
+
+Ladyman, J., & Ross, D. (2007). Every Thing Must Go. Oxford University Press.
+
+Prigogine, I., & Stengers, I. (1984). Order Out of Chaos. Bantam.
+
+Tononi, G. (2004). An information integration theory of consciousness. BMC Neuroscience, 5, 42.
+
+Whitehead, A. N. (1929). Process and Reality. Macmillan.
+
+Worrall, J. (1989). Structural realism: The best of both worlds? Dialectica, 43(1-2), 99–124.
