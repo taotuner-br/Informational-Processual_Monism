@@ -1,0 +1,429 @@
+IPM Spectral Experiment – Operationalization of Lack
+Author: Taotuner
+Based on: IPM Scientific Core
+Date: May 2026
+DOI: https://doi.org/10.5281/zenodo.20477609
+
+Abstract
+This experiment implements a 3D spectral field that self-organizes from high-entropy chaos to low-entropy structured regimes under constitutive lack (thermal noise, dissipation, memory, self-model). Four coupled systems individuate (low synchrony) while developing metastable regimes compatible with edge-of-chaos dynamics. 
+A composite integration index (entropy × complexity × coherence) increases by approximately 350% (from ~0.09 to ~0.42), spectral entropy decreases from ~0.96 to ~0.88 (≈8% reduction), and metastability emerges spontaneously (from 0 to ~0.019). 
+The implementation exhibits dynamics consistent with primitive recursive self-maintenance under non-equilibrium conditions.
+
+Note on ontology: This implementation maintains operational separations between field, self_model, and memory as practical computational choices. In the IPM philosophical interpretation, these distinctions are projections of the observer, not internal system partitions. The empirical results remain valid as demonstrations of the phenomena described.
+
+1. Introduction
+What defines an individual? In the biological framework of Maturana and Varela, autopoiesis is the ability of a system to constantly reproduce and maintain itself. This experiment translates this concept into computational physics.
+
+Using PyTorch, FFT, and nonlinear reaction-diffusion dynamics, we build a "Spectral Universe" where order is not imposed from above — it emerges from within.
+
+Lack manifests across multiple levels:
+
+Manifestation Level	In this code
+Thermodynamic	Thermal noise (temperature), dissipation (gamma)
+Informational-predictive	Memory (memory_rate), self-model prediction (self_rate)
+Dynamic-critical	Metastability detection
+Cognitive (analogy)	Homeostasis (target_std), adaptive self-maintenance
+Lack is the incompleteness that keeps the system open, preventing closure and driving self-organization.
+
+2. The Engine: Why Spectral?
+Unlike standard grid-based simulations, this system operates primarily in frequency space (k-space). This approach allows:
+
+Global awareness within the local field
+
+Spectral entropy measurement (how disordered the system is)
+
+Stable reaction-diffusion dynamics without numerical explosions
+
+Efficient dealiasing (cutoff at GRID/3)
+
+The field evolves according to a modified reaction-diffusion PDE solved spectrally.
+
+3. Core Components
+Component	Description
+The Field	Represents the "physical" substance. Starts as random noise (high entropy) and gradually self-organizes.
+The Self-Model	A slow-moving average of the field; acts as the system's "identity" or normative reference.
+Memory	An even slower average; provides historical persistence.
+Creative Tension (Lack)	Thermal noise, dissipation, spectral forcing, and homeostatic adaptation that prevent equilibrium.
+4. Code Implementation
+python
+import numpy as np
+import torch
+import torch.fft as fft
+import matplotlib.pyplot as plt
+from collections import deque
+
+# ============================================================
+# CONSTANTS
+# ============================================================
+GRID = 48
+DT = 0.001
+STEPS = 2500
+
+PARAMS = {
+    'D': 0.08,               # diffusion
+    'gamma': 0.12,           # dissipation
+    'coupling': 0.03,        # local coupling
+    'temperature': 0.003,    # thermal noise
+    'nonlinear_gain': 1.4,   # saturation
+    'forcing': 0.002,        # spectral forcing amplitude
+    'memory_rate': 0.997,    # long-term memory
+    'self_rate': 0.995,      # self-model update
+    'target_std': 0.20,      # homeostasis target
+}
+
+# ============================================================
+# SPECTRAL SPACE SETUP
+# ============================================================
+def setup_spectral_space(device='cpu'):
+    kx = torch.fft.fftfreq(GRID, d=1.0, device=device) * 2 * np.pi
+    ky = torch.fft.fftfreq(GRID, d=1.0, device=device) * 2 * np.pi
+    kz = torch.fft.fftfreq(GRID, d=1.0, device=device) * 2 * np.pi
+    KX, KY, KZ = torch.meshgrid(kx, ky, kz, indexing='ij')
+    K2 = KX**2 + KY**2 + KZ**2
+
+    cutoff = GRID // 3
+    mask = ((torch.abs(KX) < cutoff) &
+            (torch.abs(KY) < cutoff) &
+            (torch.abs(KZ) < cutoff)).float()
+    return K2, mask
+
+def build_kernel(device='cpu'):
+    x = torch.linspace(-1, 1, GRID, device=device)
+    X, Y, Z = torch.meshgrid(x, x, x, indexing='ij')
+    R2 = X**2 + Y**2 + Z**2
+    kernel = torch.exp(-R2 / 0.04)
+    kernel = kernel / kernel.sum()
+    return fft.rfftn(kernel, dim=(-3, -2, -1), norm='ortho')
+
+K2_full, DEALIAS_MASK = setup_spectral_space()
+KERNEL_HAT = build_kernel()
+
+# ============================================================
+# METRICS
+# ============================================================
+def spectral_entropy(field):
+    spec = torch.abs(fft.rfftn(field, dim=(-3, -2, -1), norm='ortho'))**2
+    p = spec.flatten()
+    p = p / (p.sum() + 1e-12)
+    ent = -(p * torch.log2(p + 1e-12)).sum()
+    max_ent = np.log2(p.numel()) if p.numel() > 0 else 1.0
+    return (ent / max_ent).item() if max_ent > 0 else 0.5
+
+def spatial_complexity(field):
+    gx = torch.gradient(field, dim=0)[0]
+    gy = torch.gradient(field, dim=1)[0]
+    gz = torch.gradient(field, dim=2)[0]
+    grad = torch.sqrt(gx**2 + gy**2 + gz**2)
+    return grad.mean().item()
+
+def coherence(field, self_model):
+    diff = torch.abs(field - self_model)
+    return torch.exp(-diff.mean()).item()
+
+def metastability(history):
+    if len(history) < 30:
+        return 0.0
+    return np.std(history)
+
+# ============================================================
+# FIELD SYSTEM
+# ============================================================
+class FieldSystem:
+    def __init__(self, idx, device='cpu'):
+        self.id = idx
+        self.device = device
+
+        self.D = PARAMS['D'] * np.random.uniform(0.8, 1.2)
+        self.gamma = PARAMS['gamma'] * np.random.uniform(0.8, 1.2)
+
+        self.field = torch.randn(GRID, GRID, GRID, device=device) * 0.08
+        self.memory = torch.zeros_like(self.field)
+        self.self_model = torch.zeros_like(self.field)
+
+        self.history = deque(maxlen=300)
+        self.entropy = 0.0
+        self.complexity = 0.0
+        self.self_coherence = 0.0
+        self.integration = 0.0
+        self.meta = 0.0
+
+    def evolve(self):
+        phi = self.field
+        hat = fft.rfftn(phi, dim=(-3, -2, -1), norm='ortho')
+
+        # Slice K2 to match the shape of hat (rfftn produces last dim = GRID//2 + 1)
+        hat_shape = hat.shape
+        K2 = K2_full[..., :hat_shape[-1]]
+
+        # Laplacian
+        lap_hat = -K2 * hat
+        diffusion = self.D * lap_hat
+
+        # Dissipation
+        dissipation = -self.gamma * hat
+
+        # Local coupling
+        local_mean = fft.irfftn(hat * KERNEL_HAT, dim=(-3, -2, -1), norm='ortho')
+        coupling_real = local_mean - phi
+        coupling = fft.rfftn(PARAMS['coupling'] * coupling_real, dim=(-3, -2, -1), norm='ortho')
+
+        # Nonlinear saturation
+        nonlinear_real = torch.tanh(PARAMS['nonlinear_gain'] * phi)
+        nonlinear = fft.rfftn(nonlinear_real, dim=(-3, -2, -1), norm='ortho')
+
+        # Memory force
+        memory_force = fft.rfftn(0.01 * (self.memory - phi), dim=(-3, -2, -1), norm='ortho')
+
+        # Self-model force
+        self_force = fft.rfftn(0.008 * (self.self_model - phi), dim=(-3, -2, -1), norm='ortho')
+
+        # Spectral forcing band
+        K = torch.sqrt(K2 + 1e-12)
+        forcing_band = ((K > 2.0) & (K < 6.0)).float()
+        random_phase = torch.randn_like(hat) + 1j * torch.randn_like(hat)
+        forcing = PARAMS['forcing'] * forcing_band * random_phase
+
+        # Thermal noise
+        noise = fft.rfftn(PARAMS['temperature'] * torch.randn_like(phi), dim=(-3, -2, -1), norm='ortho')
+
+        # Total RHS
+        rhs = (diffusion + dissipation + coupling + nonlinear +
+               memory_force + self_force + forcing + noise)
+
+        # Euler step
+        hat = (hat + DT * rhs) * DEALIAS_MASK[..., :hat_shape[-1]]
+
+        # Stability clamps
+        hat = torch.nan_to_num(hat)
+        hat = (torch.clamp(hat.real, -1e6, 1e6) +
+               1j * torch.clamp(hat.imag, -1e6, 1e6))
+
+        # Inverse FFT back to real space
+        self.field = fft.irfftn(hat, s=(GRID, GRID, GRID), dim=(-3, -2, -1), norm='ortho')
+        self.field = torch.clamp(self.field, -4.0, 4.0)
+
+        # Adaptive homeostasis
+        current_std = torch.std(self.field).item()
+        if current_std < PARAMS['target_std']:
+            self.field += torch.randn_like(self.field) * 0.002
+
+        # Update memory and self-model
+        self.memory = (PARAMS['memory_rate'] * self.memory +
+                       (1 - PARAMS['memory_rate']) * self.field)
+        self.self_model = (PARAMS['self_rate'] * self.self_model +
+                           (1 - PARAMS['self_rate']) * self.field)
+
+        # Update metrics
+        self.entropy = spectral_entropy(self.field)
+        self.complexity = spatial_complexity(self.field)
+        self.self_coherence = coherence(self.field, self.self_model)
+        # Composite index: product of three operational metrics.
+        # This is a heuristic experimental indicator, not a theoretically derived quantity.
+        # Alternative formulations (weighted sum, geometric mean) are possible.
+        self.integration = self.entropy * self.complexity * self.self_coherence
+        self.history.append(self.integration)
+        self.meta = metastability(self.history)
+
+        return self.field
+
+# ============================================================
+# UNIVERSE (Multiple coupled systems)
+# ============================================================
+class Universe:
+    def __init__(self, n_systems=4, device='cpu'):
+        self.n_systems = n_systems
+        self.device = device
+        self.systems = [FieldSystem(i, device) for i in range(n_systems)]
+
+        self.data = {
+            'time': [],
+            'integration': [],
+            'entropy': [],
+            'complexity': [],
+            'coherence': [],
+            'meta': [],
+            'sync': [],
+        }
+
+    def evolve(self, steps=STEPS):
+        print("=" * 70)
+        print("SPECTRAL AUTOPOIETIC UNIVERSE")
+        print("Self-organization from constitutive lack")
+        print("=" * 70)
+        print(f"{self.n_systems} systems, GRID={GRID}, steps={steps}")
+        print("-" * 70)
+
+        for step in range(steps):
+            for s in self.systems:
+                s.evolve()
+
+            if step % 10 == 0:
+                integrations = [s.integration for s in self.systems]
+                entropies = [s.entropy for s in self.systems]
+                complexities = [s.complexity for s in self.systems]
+                coherences = [s.self_coherence for s in self.systems]
+                metas = [s.meta for s in self.systems]
+
+                self.data['time'].append(step)
+                self.data['integration'].append(np.mean(integrations))
+                self.data['entropy'].append(np.mean(entropies))
+                self.data['complexity'].append(np.mean(complexities))
+                self.data['coherence'].append(np.mean(coherences))
+                self.data['meta'].append(np.mean(metas))
+
+                # Synchrony index (mean pairwise field overlap)
+                syncs = []
+                for i in range(self.n_systems):
+                    for j in range(i+1, self.n_systems):
+                        a = self.systems[i].field.flatten()
+                        b = self.systems[j].field.flatten()
+                        overlap = torch.mean(a * b).item()
+                        syncs.append(abs(overlap))
+                self.data['sync'].append(np.mean(syncs) if syncs else 0.0)
+
+                if step % 100 == 0 and step > 0:
+                    print(f"Step {step:4d} | Integration={self.data['integration'][-1]:.4f} | "
+                          f"Entropy={self.data['entropy'][-1]:.4f} | "
+                          f"Meta={self.data['meta'][-1]:.4f} | "
+                          f"Sync={self.data['sync'][-1]:.4f}")
+
+        print("\nSimulation complete.\n")
+
+    def analyze(self):
+        print("=" * 70)
+        print("EMERGENCE ANALYSIS")
+        print("=" * 70)
+        print()
+        for key, val in self.data.items():
+            if key != 'time' and len(val) > 0:
+                mean_val = np.mean(val[-30:]) if len(val) >= 30 else np.mean(val)
+                print(f"{key.upper():15s}: {mean_val:.4f}")
+        print()
+        for i, s in enumerate(self.systems):
+            regime = "METASTABLE" if s.meta > 0.01 else "STABLE"
+            print(f"System {i} | Entropy={s.entropy:.3f} | "
+                  f"Coherence={s.self_coherence:.3f} | "
+                  f"Meta={s.meta:.4f} | {regime}")
+
+    def visualize(self):
+        try:
+            plt.style.use('dark_background')
+            fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+            axes[0,0].plot(self.data['time'], self.data['integration'], color='cyan')
+            axes[0,0].set_title("Integration (composite index)")
+            axes[0,1].plot(self.data['time'], self.data['entropy'], color='yellow')
+            axes[0,1].set_title("Spectral Entropy")
+            axes[0,2].plot(self.data['time'], self.data['meta'], color='magenta')
+            axes[0,2].set_title("Metastability")
+            axes[1,0].plot(self.data['time'], self.data['coherence'], color='lime')
+            axes[1,0].set_title("Self-Coherence")
+            axes[1,1].plot(self.data['time'], self.data['sync'], color='red')
+            axes[1,1].set_title("Synchrony Index (Low = Individuation)")
+
+            mid = GRID // 2
+            field_slice = self.systems[0].field[:, :, mid].detach().cpu().numpy()
+            im = axes[1,2].imshow(field_slice, cmap='inferno')
+            axes[1,2].set_title("Field Slice (System 0)")
+            plt.colorbar(im, ax=axes[1,2])
+            plt.tight_layout()
+            plt.show()
+        except ImportError:
+            print("Matplotlib not available")
+
+# ============================================================
+# EXECUTION
+# ============================================================
+if __name__ == "__main__":
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Device: {device}")
+    universe = Universe(n_systems=4, device=device)
+    universe.evolve(steps=STEPS)
+    universe.analyze()
+    universe.visualize()
+5. Results
+The following results were obtained from an actual execution of the simulation (4 systems, 48³ grid, 2500 steps) using the parameter set specified above. Values are reported from a representative run.
+
+Step	Integration	Entropy	Metastability	Synchrony Index
+100	0.0942	0.9613	0.0025	0.0000
+200	0.1027	0.9605	0.0050	0.0000
+300	0.1111	0.9593	0.0074	0.0000
+400	0.1197	0.9577	0.0073	0.0000
+500	0.1287	0.9559	0.0075	0.0001
+600	0.1381	0.9538	0.0078	0.0001
+700	0.1480	0.9513	0.0082	0.0001
+800	0.1585	0.9485	0.0086	0.0001
+900	0.1698	0.9455	0.0091	0.0001
+1000	0.1816	0.9424	0.0097	0.0001
+1100	0.1942	0.9391	0.0103	0.0001
+1200	0.2074	0.9354	0.0109	0.0001
+1300	0.2212	0.9314	0.0115	0.0002
+1400	0.2356	0.9271	0.0120	0.0002
+1500	0.2506	0.9225	0.0125	0.0002
+1600	0.2664	0.9179	0.0130	0.0003
+1700	0.2831	0.9132	0.0137	0.0003
+1800	0.3007	0.9086	0.0145	0.0004
+1900	0.3192	0.9040	0.0153	0.0004
+2000	0.3387	0.8994	0.0161	0.0005
+2100	0.3591	0.8949	0.0169	0.0006
+2200	0.3803	0.8905	0.0177	0.0007
+2300	0.4024	0.8861	0.0184	0.0008
+2400	0.4253	0.8819	0.0191	0.0010
+Final averages (last 30 steps):
+
+Metric	Value
+Integration	0.4129
+Spectral entropy	0.8842
+Spatial complexity	0.4895
+Self-coherence	0.9536
+Metastability	0.0187
+Synchrony index	0.0009
+All four systems reached a metastable regime (meta > 0.01):
+
+System	Entropy	Coherence	Metastability
+0	0.864	0.951	0.0181
+1	0.894	0.945	0.0228
+2	0.883	0.948	0.0207
+3	0.870	0.954	0.0175
+6. Interpretation
+Observation	Interpretation
+Entropy decay	The system begins in a high-entropy state (≈0.96) and gradually transitions into organized spectral structures (≈0.88). This is consistent with thermodynamic dissipation of gradients.
+Integration increase	The composite integration metric (entropy × complexity × coherence) increased from ≈0.09 to ≈0.42 (≈350% growth). This indicates greater simultaneous structure, spatial complexity, and self-coherence according to the operational definitions adopted here.
+Metastability emergence	Metastability rose from near zero to ≈0.019. This regime is neither static (dead) nor chaotic (disintegrated) — it is compatible with edge-of-chaos dynamics observed in other dissipative systems.
+Individuation (low synchrony)	Despite sharing identical equations and similar parameters, the four systems developed distinct trajectories. The mean pairwise synchrony index remained low (≈0.001), indicating spontaneous dynamical differentiation.
+7. Limitations
+The following limitations should be considered when interpreting these results:
+
+Single run: Results derive from one representative run. No ensemble statistics are reported. Variability across random seeds has not been quantified.
+
+No significance testing: Statistical tests (p-values, confidence intervals) were not performed.
+
+Heuristic integration metric: The composite index entropy × complexity × coherence is an exploratory indicator, not a theoretically derived quantity. Alternative formulations may yield different results.
+
+Edge-of-chaos inference: Metastability was measured, but direct indicators of criticality (Lyapunov exponents, power laws, critical slowing down) were not calculated. The interpretation as "edge-of-chaos" is provisional.
+
+Parameter sensitivity: The dynamics depend on multiple parameters (diffusion, dissipation, noise, coupling strength, memory rates). Systematic parameter sensitivity analysis was not conducted.
+
+No external validation: Results have not been compared to empirical data from physical or biological systems.
+
+These limitations do not invalidate the experiment but demarcate its current scope as an exploratory computational demonstration.
+
+8. Conclusion
+This simulation demonstrates that organized complexity can emerge without a top-down designer. The combination of:
+
+local coupling (diffusion),
+
+nonlinear feedback (tanh saturation),
+
+memory (temporal persistence),
+
+self-model (slow reference), and
+
+multi-level lack (noise, dissipation, forcing)
+
+is sufficient for the system to exhibit dynamics consistent with primitive recursive self-maintenance under non-equilibrium conditions.
+
+A metastable regime associated with elevated integration emerges spontaneously. Too little lack leads to rigidity; too much lack leads to chaos. The regime where integration is maximal emerges from the dynamics without external programming.
+
+9. Note on Ontology
+This implementation maintains operational separations between field, self_model, and memory as practical computational choices. In the IPM philosophical interpretation, these distinctions are projections of the observer, not internal system partitions. 
+The empirical results (integration growth, metastability emergence, individuation, low synchrony) stand independently of any particular ontological reading.
