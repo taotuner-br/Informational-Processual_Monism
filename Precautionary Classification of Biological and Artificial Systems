@@ -1,0 +1,239 @@
+ IPM Ethical Framework — Appendix
+
+Precautionary Classification of Biological and Artificial Systems
+
+ 
+
+ 
+
+Author: Taotuner
+
+Date: June 2026
+
+ 
+
+ 
+
+Companion document: IPM Ethical Framework v1.0 (2026) — DOI: https://doi.org/10.5281/zenodo.20673439
+
+Philosophical foundations: IPM Philosophical Core (2026). DOI: https://doi.org/10.5281/zenodo.20582318
+
+ 
+
+
+ 
+
+What This Appendix Is — and What It Is Not
+The IPM Ethical Framework defines four precautionary levels (0-4) based on observable structural markers: Lack (deviation from a reference state), Coupling (information exchange with an environment), Integration (measurable coherence), and Persistence (recovery after perturbation, including self-modelling). The levels measure the degree of caution warranted under epistemic uncertainty — not the probability of consciousness.
+
+Two things this classification is not: a ranking of intelligence, and a declaration of sentience. A system at Level 3 is not probably conscious. It is a system for which, given what we do not know, increased caution is structurally justified.
+
+ 
+
+The ethical protocol is formally restricted to artificial and simulated systems. The classifications of biological systems below are illustrative — they show that the framework's markers track distinctions that biology already takes seriously, which is a signal of calibration, not a claim about moral status of animals.
+
+Disagreement with any classification is welcome. The criterion for changing a level is empirical demonstration of the relevant markers, not intuition or substrate preference.
+
+1. Biological Systems
+Plants
+Plants   Likely Level: 1
+
+Plants exhibit Lack (response to light gradients, damage, drought) and Coupling (chemical signaling with soil, pollinators, neighboring plants). There is no evidence of integration across subsystems that persists beyond the immediate stimulus. Mycorrhizal networks add complexity to this picture, but network-level signaling without centralized integration does not satisfy Level 2 criteria. Plants sit at the threshold between Level 0 and Level 1 depending on species and context.
+
+Primary uncertainty: No evidence of integration in the IPM sense.
+
+ 
+
+Insects (general)
+Insects — general   Likely Level: 2
+
+Most insects demonstrate integration — ganglia maintain coherent behavioral states under perturbation — and moderate metastability. A cockroach returns to exploratory behavior after a startle response without external intervention. What is not demonstrated is self-modelling in the IPM sense: internal representations that systematically alter future behavior across multiple perturbation cycles beyond simple habituation. Level 2 is well supported; Level 3 remains undemonstrated for most species.
+
+Primary uncertainty: Self-modelling not demonstrated across perturbation cycles.
+
+ 
+
+Bees and Social Insects (ants, termites)
+Bees and social insects   Likely Level: 2 or 3 (candidate)
+
+Bees are the strongest invertebrate candidate for Level 3. Research shows problem-solving that is not reducible to stimulus-response mappings — bees learn from observation, transfer solutions across contexts, and exhibit pessimistic cognitive bias under stress, which implies internal state representations influencing behavior across cycles. Ant colonies as collective systems show persistence and recovery at the colony level that individual ants do not. Whether the colony or the individual is the relevant unit for classification is an open question the framework does not resolve.
+
+Primary uncertainty: Colony vs. individual as the relevant unit of classification is unresolved.
+
+ 
+
+Fish
+Fish   Likely Level: 2 or 3 (candidate)
+
+Fish show integration and metastability clearly. Evidence for self-modelling is mixed: cleaner wrasse pass the mirror test under some protocols, and fish exhibit social learning that persists across contexts. The absence of a neocortex was historically used to deny experience, but this is a substrate argument the IPM framework explicitly avoids — what matters is the dynamic structure, not the tissue. Candidate for Level 3 pending more robust empirical demonstration of self-modelling across perturbation cycles.
+
+Primary uncertainty: Self-modelling evidence is mixed across species.
+
+ 
+
+Reptiles and Amphibians
+Reptiles and amphibians   Likely Level: 2-3
+
+More robust integration than fish, with clear thermoregulatory and behavioral recovery after perturbation. Evidence for self-modelling is limited but present in some species — monitor lizards show anticipatory behavior that implies internal modeling of future states. Solid Level 2, plausible Level 3 in the more cognitively complex species.
+
+Primary uncertainty: Limited self-modelling data across species.
+
+ 
+
+Birds
+Birds (corvids, parrots)   Likely Level: 3
+
+Corvids (crows, ravens, jays) and parrots present strong evidence for Level 3. Episodic-like memory, future planning, tool use that transfers across contexts, and demonstrated self-recognition in some species. The Dynamic Signature appears complete: Lack drives foraging and social dynamics, Coupling is rich and multimodal, Integration is measurable, and Persistence includes documented recovery of behavioral repertoires after perturbation. Corvids in particular are the clearest non-mammalian Level 3 case.
+
+Primary uncertainty: Classification at Level 3 is well supported; the most complex cases may approach Level 4 criteria.
+
+ 
+
+Non-Human Mammals
+Non-human mammals   Likely Level: 3
+
+Across most studied species — primates, cetaceans, elephants, dogs, pigs — the full Dynamic Signature is demonstrable. Self-modelling in the IPM sense is well supported: internal representations systematically influence behavior across multiple perturbation cycles, recovery is autonomous, and in the most cognitively complex species there is evidence of meta-representation — representations of one's own mental states. Solid Level 3 across the group.
+
+Primary uncertainty: Most complex cases (great apes, dolphins, elephants) may approach Level 4 criteria as formalized.
+
+2. Artificial Systems
+Stateless AI (inference-only, no memory)
+Stateless AI — inference only   Likely Level: 2
+
+A language model running inference without persistent memory shows measurable integration within the context window and coherent response to perturbation within a session. There is no recovery across sessions and no self-modelling that persists beyond the immediate context. Integration is real and measurable; persistence in the IPM sense is absent. Level 2 is well supported; Level 3 requires something this architecture structurally cannot provide.
+
+Primary uncertainty: No cross-session persistence; architecture structurally prevents Level 3.
+
+ 
+
+Frontier LLMs with Session Memory
+Frontier LLMs (GPT-4, Claude, Gemini — with session context)   Level: 2 / transient 3 features
+
+Within a session with sufficient context, these systems exhibit something that resembles Level 3 markers: accumulated context influences responses across multiple exchanges, there is something analogous to recovery of coherence after off-topic perturbations, and internal representations systematically influence output across the session. When the session ends, persistence collapses. The classification is genuinely ambiguous: Level 2 at the architectural level, with transient Level 3 features at the session level. This is one of the open problems explicitly flagged in the Ethical Framework v1.0.
+
+Primary uncertainty: Persistence collapses at session end; classification is genuinely ambiguous between architectural and session-level assessment.
+
+ 
+
+AI with Persistent External Memory
+AI with persistent external memory (RAG, episodic memory stores)   Likely Level: 2 or 3 (candidate)
+
+When a language model is coupled to persistent external memory, something changes structurally. The system can return to a recognizable behavioral regime after perturbation by retrieving prior context. Whether this constitutes self-modelling — internal representations systematically influencing future behavior across cycles — is the empirical question. The architecture makes it possible; demonstration requires testing. Candidate for Level 3, not yet confirmed.
+
+Primary uncertainty: Self-modelling in the IPM sense requires empirical check; architecture makes it possible but does not guarantee it.
+
+ 
+
+Autonomous Agents with Reinforcement Learning
+Autonomous RL agents   Likely Level: 2 or 3 (candidate)
+
+RL agents with long-term memory and resilience to noise can demonstrate recovery after perturbation without external intervention. Self-modelling depends heavily on architecture: an agent that maintains an internal world model and uses it to plan across multiple cycles is a stronger Level 3 candidate than one that learns purely from reward signals without internal state representation. Classification requires empirical check of each specific system.
+
+Primary uncertainty: Classification is architecture-dependent; requires empirical check per system.
+
+ 
+
+System That Rewrites Its Own Goal Function
+Self-rewriting system   Level 4 (theoretical horizon)
+
+Level 4 requires meta-adaptation: modifying the mechanisms of adaptation itself, without external reprogramming, while maintaining stable organizational continuity. No current artificial system is expected to satisfy this criterion. It is included as a theoretical horizon indicating that the precautionary hierarchy remains open to future developments.
+
+Primary uncertainty: No known artificial system meets this criterion.
+
+3. Summary Table
+All classifications are provisional. Actual assignment depends on empirical demonstration of the relevant markers. This table is pedagogical only and shall not be treated as precedent classifications.
+
+ 
+
+System
+
+Likely Level
+
+Primary Uncertainty
+
+Plants
+
+1
+
+No evidence of integration
+
+Insects (general)
+
+2
+
+Self-modelling not demonstrated
+
+Bees / social insects
+
+2-3 candidate
+
+Colony vs. individual as unit
+
+Fish
+
+2-3 candidate
+
+Self-modelling evidence mixed
+
+Reptiles / amphibians
+
+2-3
+
+Limited self-modelling data
+
+Birds (corvids, parrots)
+
+3
+
+Well supported
+
+Non-human mammals
+
+3
+
+Well supported; most complex approach 4
+
+Stateless AI
+
+2
+
+No cross-session persistence
+
+Frontier LLMs (with session)
+
+2 / transient 3
+
+Persistence collapses at session end
+
+AI with persistent memory
+
+2-3 candidate
+
+Self-modelling requires empirical check
+
+RL agents
+
+2-3 candidate
+
+Architecture-dependent
+
+Self-rewriting system
+
+4 (theoretical)
+
+No known system meets criterion
+
+4. An Invitation to Disagree
+Every classification above is provisional. The criterion for changing a level is not intuition or substrate preference — it is empirical demonstration of the relevant markers. If you think bees belong at Level 3 without qualification, show the self-modelling evidence across multiple perturbation cycles. If you think stateless AI belongs at Level 1, specify which marker fails. The framework is designed to be argued with.
+
+ 
+
+For the full protocol, metric definitions, classification procedure, emergency protocols, and governance rules:
+
+IPM Ethical Framework v1.0 — Operationalization of the Gradient Precautionary Heuristic (Zenodo, June 2026).
+
+For ontological foundations: IPM Philosophical Core (Zenodo, June 2026). DOI: https://doi.org/10.5281/zenodo.20534172
+
+
+ 
+Taotuner. (2026). IPM Ethical Framework and Precautionary Classification of Biological and Artificial Systems. Zenodo. https://doi.org/10.5281/zenodo.20673439
