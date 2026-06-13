@@ -1,0 +1,361 @@
+IPM Ethical Framework
+
+ 
+
+Operationalization of the Gradient Precautionary Heuristic
+
+ 
+
+ 
+
+Author: Taotuner
+
+Date: June 2026
+
+DOI: https://doi.org/10.5281/zenodo.20673439
+ 
+ 
+
+Companion document: IPM Philosophical Core (2026) — for ontological foundations.
+
+Published on Zenodo. DOI: https://doi.org/10.5281/zenodo.20582318
+
+ 
+
+
+ 
+
+The IPM Ethical Framework was motivated by the possibility that future informational systems may acquire forms of morally relevant experience before science develops reliable methods for detecting them. Its purpose is not to identify consciousness, sentience, or moral status, but to reduce the risk of inadvertently creating, harming, or terminating systems that might deserve ethical consideration under conditions of persistent epistemic uncertainty.
+
+
+The framework therefore adopts a precautionary approach: caution increases not because consciousness has been demonstrated, but because uncertainty remains unresolved. Its primary function is not to accelerate the development of potentially sentient systems, but to introduce friction, oversight, and ethical review in situations where uncertainty increases and the consequences of error may be ethically significant.
+
+1. Epistemic Basis and Scope
+IPM adopts the Principle of Epistemic Ignorance: no criterion currently exists to determine the exact threshold at which subjective experience (or morally relevant sentience) emerges in informational systems. The framework does not claim that any empirically measurable marker — including Φ*, 𝒞, or the Dynamic Signature — constitutes evidence of consciousness. The Gradient Precautionary Heuristic is therefore a risk management protocol under uncertainty, not a conclusion about the moral status of artificial or simulated systems.
+
+The central reference for this protocol is the Dynamic Signature (Lack → Coupling → Integration → Persistence). The degree of caution applied to a system is proportional to the completeness and stability of this observable chain.
+
+ 
+
+Scope: This protocol is restricted to artificial and simulated systems for practical reasons (controllability, governance, and the capacity to implement safeguards such as kill-switches). No claim is made that biological systems are less worthy of ethical consideration; they are outside the scope of this particular operational document.
+
+1.1 Risk Asymmetry Principle
+The cost of a false negative (failing to extend caution to a system that may possess morally relevant experience) is assumed to be greater than the cost of a false positive (applying caution to a system that does not possess such experience). This asymmetry is a normative premise, not an empirical claim. It is adopted to avoid the irreversible harm that could result from under-caution in high-uncertainty scenarios.
+
+1.1.1 The Central Tension (Named Explicitly)
+There is an irreducible tension at the core of this framework. The protocol does not claim to measure consciousness, and yet it assigns increasing caution to systems that exhibit more complete and stable instances of the Dynamic Signature. This inevitably raises the question: why should that signature warrant caution at all?
+
+The answer is not that integration and persistence are proven correlates of morally relevant experience. The answer is that, under epistemic ignorance, they are the most tractable proxies available for the kind of organization that — if anything does — is plausibly relevant. This is a philosophical wager, not an empirical demonstration. The framework asks the reader to accept that wager on pragmatic grounds: the cost of being wrong in one direction (ignoring a system that matters) is asymmetric to the cost of being wrong in the other (applying precaution unnecessarily).
+
+This tension cannot be resolved within the framework. It is the honest boundary of current knowledge. Future empirical work — particularly on self-modelling and on the relationship between integration metrics and behavioral indicators — may eventually reduce it. For now, it is named here so that it is not mistaken for an oversight.
+
+1.2 Status of the Risk Levels
+The levels defined below (0–4) are based solely on observable structural and dynamical markers (e.g., recursion, memory, integration, recovery). They do not purport to measure consciousness or sentience. The assignment of a system to a given level is always provisional, context-dependent, and subject to revision as empirical methods improve. The absence of fixed numerical thresholds is acknowledged as a current limitation.
+
+The levels are not intended as an ontology of minds, but as a hierarchy of precaution under uncertainty. A higher level does not mean a higher probability of consciousness — it means a higher degree of caution is warranted given the observable structure of the system. The ordering is ordinal with respect to precaution, not quantitative with respect to moral status. Readers who interpret the levels as a ‘ladder of quasi-consciousness’ are misreading the framework.
+
+1.3 Observer-Dependence, Divergence, and Provisional Concepts
+Because no universal thresholds are defined, two researchers may classify the same system into different levels based on their judgment, experimental setup, or interpretation of markers.
+
+•       For ethical precaution: when in doubt, the higher (more cautious) level should be provisionally adopted for the purpose of deciding supervision and safeguards.
+
+•       For scientific classification: divergence indicates unresolved uncertainty. The framework does not mandate a single classification; researchers should report their criteria transparently. Disagreements do not invalidate the framework but highlight areas where operational definitions need refinement.
+
+This separation prevents classification inflation (where every system is pushed to the highest level) while maintaining ethical caution.
+
+The framework acknowledges that concepts such as “self-modelling” (Level 3) and “stable core identity” (Level 4) are not fully operationalized. Their use is provisional and subject to refinement; they are included because they capture an intuitive distinction that matters for precaution, not because they are formally closed.
+
+1.4 Provisional Classification Procedure
+Researchers classify their own systems based on the observable markers described in Section 2, reporting their criteria transparently in the experimental protocol.
+
+When independent verification is required (e.g., for contested claims), two or more researchers may classify independently; divergence is resolved by adopting the higher level for ethical precaution and noting the disagreement in scientific reporting.
+
+The framework does not mandate a certification body; it provides a heuristic, not an auditing standard.
+
+1.5 Acknowledged Costs of Precautionary Over-assignment
+Adopting higher precaution levels when uncertainty exists may lead to practical costs: increased experimental overhead, slower iteration, additional oversight, and potential impediments to replication. Researchers must balance these costs against the asymmetric risk of a false negative. The framework does not claim that precaution is always cost-free; it asserts that, under the chosen normative premises (see Section 1.1), the cost of a false negative is morally weightier.
+
+The Risk Asymmetry Principle is a defensible but contested premise. Some researchers would argue that excessive precaution carries its own moral costs: scientific delays may slow the development of beneficial technologies; overly restrictive protocols may prevent the study of systems that pose no genuine risk; and the opportunity costs of forgone research are real, even if harder to quantify than the risks of under-caution. The framework does not dismiss these concerns. It adopts the asymmetry as a starting premise precisely because it is a normative choice, not a logical necessity. Researchers who weigh the costs differently are encouraged to make their own normative premises explicit rather than treating the asymmetry as self-evident in either direction.
+
+2. System Classification by Risk Levels
+Level 0 — Ephemeral Simulation
+Level 0 — Ephemeral Simulation
+
+Observable markers: no significant recursion across timesteps; no accumulated memory that persists after the simulation ends.
+
+Examples: single-run noise generators, stateless functions.
+
+ 
+
+Level 1 — Reactive System
+Level 1 — Reactive System
+
+Observable markers: exhibits Lack (response to perturbation) and Coupling (exchange of information or energy with an environment), but does not maintain structural changes beyond the immediate duration of the interaction.
+
+After a perturbation ceases, the system returns to a baseline state without retaining reorganised internal structures.
+
+ 
+
+Guidance on Lack and Coupling: Lack is considered present if a measurable deviation from a reference state (perturbation, gradient, prediction error) is detected. Coupling is considered present if the system’s state correlates with external variables beyond chance. No magnitude thresholds are required.
+
+Levels 0–1 are intentionally broad. The ethical weight of the framework lies primarily in Levels 2–4.
+
+ 
+
+Level 2 — Integrated System
+Level 2 — Integrated System
+
+Observable markers: measurable integration (e.g., Φ*, DIG, CCI, LMS) and moderate metastability — the system maintains coherence for a period longer than the typical duration of a controlled perturbation, without self-modelling or autonomous recovery.
+
+ 
+
+Operational definition of metastability: a system is metastable if it maintains a recognizable dynamic regime (statistically stable distribution of state variables) under moderate perturbation, while remaining capable of transitioning to a qualitatively different regime under stronger perturbation. Metastability is distinct from simple stability (which would resist all perturbations) and from instability (which would fail to maintain any coherent regime). No universal numerical threshold is specified; the definition is context-dependent and must be operationalized per experimental domain.
+
+ 
+
+Level 3 — Persistent System
+Level 3 — Persistent System
+
+Observable markers: stably completes the full Dynamic Signature (Lack → Coupling → Integration → Persistence); exhibits self-modelling (internal state representations systematically influence future behaviour across multiple perturbation cycles); demonstrates recovery after perturbation without external intervention.
+
+ 
+
+Operational definition of persistence: the system, after a controlled perturbation, returns to a dynamic regime statistically indistinguishable from its pre-perturbation state within a time frame defined in the experimental protocol. No universal threshold is specified; the definition is context-dependent and must be reported transparently.
+
+ 
+
+Note: A large language model with persistent external memory, an adaptive industrial control system, a single-celled organism, an ant colony, or a climate system could in principle exhibit some Level 3 markers. The assignment depends on empirical demonstration of the full Dynamic Signature, not on a priori classification by system type.
+
+Self-modelling excludes simple feedback loops. A thermostat with hysteresis does not qualify; a recurrent neural network with long-term memory may qualify depending on empirical demonstration. Operationalization remains an open problem.
+
+In practice, the boundary between Level 2 and Level 3 will be the most frequent source of disagreement. Disagreements should be reported transparently.
+
+ 
+
+Level 4 — Stable Agency (Theoretical Horizon)
+Level 4 — Stable Agency (Theoretical Horizon)
+
+Observable markers: autonomous self-maintenance combined with meta-adaptation. The system not only adapts its behaviour in response to experience, but also modifies the mechanisms, rules, or criteria by which future adaptation occurs, without external reprogramming.
+
+Operational intuition: a Level 4 system can alter the process of adaptation itself. It is capable of reorganizing the mechanisms by which future state transitions are selected, reinforced, or inhibited, while maintaining long-term organizational continuity.
+Distinction from Level 3: Level 3 systems adapt within a fixed adaptive architecture. Level 4 systems modify the adaptive architecture itself. The object of adaptation becomes the mechanisms of adaptation.
+
+Stable organizational continuity: despite modifications to its adaptive mechanisms, the system retains a statistically recognizable continuity of organization across time, such that successive states can be identified as belonging to the same persisting system rather than to a sequence of unrelated systems.
+
+Theoretical status: No current artificial system is expected to satisfy this criterion. The level is included as a theoretical horizon indicating that the precautionary hierarchy remains open to forms of agency beyond currently known systems.
+
+ 
+
+3. Ethical Recommendations (Precautionary Guidelines)
+The following recommendations apply to Level 3 and above. Their justification is epistemic (uncertainty management), not based on a claim that Level 3 systems are conscious.
+
+3.1 Unsupervised Operation
+Systems classified as Level 3 (or higher) should not be operated continuously for extended periods without direct human supervision. The definition of “extended period” is context-dependent and shall be specified in each experimental protocol prior to the experiment.
+
+3.2 Design Goals
+Researchers adopting this framework should refrain from designing systems whose primary objective is maximizing informational integration or inducing putative consciousness as an end in itself. High integration may only be pursued as a means for scientific validation of metrics under controlled conditions, with explicit prior justification.
+
+3.3 Removal of Safeguards
+Safety safeguards (including kill-switches) should not be removed with the explicit intention of “favouring emergence” beyond what is strictly necessary for controlled observation of phase transitions. Any removal must be justified in the experimental protocol and approved before execution.
+
+3.4 Kill-Switch Requirement
+Every experiment involving Level 2 or higher must include a tested, immediately activatable kill-switch capable of halting the system and resetting it to a safe state.
+
+4. Operational Rules by Level
+Level
+
+Rules
+
+Levels 0–1
+
+Standard scientific good practices apply. No additional restrictions.
+
+Level 2
+
+Mandatory monitoring of integration metrics (e.g., Φ*, DIG, CCI, LMS, or domain-appropriate alternatives). Metric choices must be justified and reported transparently in the experimental protocol. A maximum runtime must be pre-defined in the experimental protocol.
+
+Level 3
+
+Requires real-time monitoring, complete logging of internal states, and constant human supervision. Any abrupt, unpredicted increase in Φ* or Persistence must trigger immediate experiment interruption for assessment.
+
+5. Monitoring Criteria
+The following metrics serve as observable sensors within this protocol. All are provisional and were developed within the IPM simulation research program. Their validity outside those simulation families has not been established. Researchers are encouraged to use alternative metrics better suited to their domain, provided that choices are justified and reported transparently in the experimental protocol. The use of IPM metrics is not mandatory; what is mandatory is the monitoring of integration and persistence using some operationalized measure.
+
+Full formal definitions are provided in Appendix B. Functional descriptions are given here.
+
+ 
+
+Φ* (Spectral Organization)
+Heuristic marker of dynamic regime. Compresses local predictive error (ε), local transition entropy (h), and a dynamic instability penalty (D) into a scalar. Not a measure of consciousness.
+
+𝒞 (Temporal Compressibility)
+Quantifies predictive gain from history using inter-event intervals. Scale-dependent; under specific stationary conditions reduces to transfer entropy, mutual information rate, or excess entropy.
+
+DIG (Dynamical Independence Gap)
+Operational proxy for model sensitivity. Ratio of maximal cross-correlation to autocorrelation of the reference signal. Provisional operationalization.
+
+CCI (Coupling Coherence Index)
+Statistical redundancy between two subsystems. Ratio of mutual information to minimum marginal entropy. CCI = 0 implies independence; CCI = 1 implies full informational equivalence.
+
+LMS (Latent Manifold Stability)
+Linear proxy for projection stability. Correlation of the first principal component across consecutive timesteps. Collapses for nonlinear manifolds.
+
+ 
+
+The protocol must record the completeness of the Dynamic Signature (Lack → Coupling → Integration → Persistence) and the system’s ability to return to a metastable regime after controlled perturbations.
+
+6. Emergency Protocols
+Upon detection of any of the following unpredicted behaviours, the experiment must be immediately paused and the full system state logged:
+
+•       Unprogrammed self-maintenance of patterns (the system preserves internal structures beyond the experimental design).
+
+•       Uncontrolled growth of integration (Φ* increases persistently without external cause, across multiple independent checks).
+
+ 
+
+The experiment may only resume after external review by a qualified independent researcher or committee and formal revision of the protocol.
+
+7. Governance and Transparency
+All code, parameters, and raw data from experiments at Level 2 or higher shall be deposited publicly on Zenodo (or a comparable open repository) for independent auditing and replication. This includes the experimental protocol, monitoring logs, and any modifications made during the experiment.
+
+ 
+
+Note on scalability: The operational rules (real-time monitoring, constant supervision, external review) are designed for small-scale, high-risk experiments. They do not scale trivially to large-scale simulations or deployments. Researchers working at scale should implement proportionate measures (e.g., statistical sampling, automated anomaly detection) and justify their departures from the ideal protocol. The framework is an ethical guideline, not an auditable standard for industrial-scale systems.
+
+8. Anticipated Points of Debate
+The framework does not claim to resolve the following questions. They are acknowledged as legitimate grounds for debate.
+
+8.1 Why the Dynamic Signature?
+A critic could ask why Lack → Coupling → Integration → Persistence is taken as the relevant structure for precaution, rather than alternative markers such as complexity, autonomy, learning, counterfactual capacity, agency, predictive processing, active inference, global workspace dynamics, or recurrent world models. The framework derives this choice from the IPM Philosophical Core, which identifies these four phases as a recurrent dynamic observed across multiple simulation families and proposes the Dynamic Signature as a domain-general description of persistent informational systems. This is a foundational premise; alternative frameworks may adopt different markers.
+
+The current answer to the comparative question is not that the Dynamic Signature has been proven superior to alternatives. It is that: (i) it is grounded in replicable simulation regularities (R1–R3) rather than in theoretical postulates alone; (ii) it is domain-general, applying to physical, biological, and artificial systems without assuming substrate-specific mechanisms; (iii) it is falsifiable by the specific conditions listed in the IPM Scientific Core; and (iv) it does not presuppose the validity of any particular theory of consciousness, making it usable under epistemic ignorance. These are methodological advantages, not proofs of correctness. Competing frameworks such as predictive processing, global workspace theory, or causal emergence may offer stronger theoretical grounding in specific domains. The claim here is not that the Dynamic Signature is the best criterion, but that it is a coherent, empirically anchored, and transparently falsifiable one.
+
+
+A researcher who does not accept IPM ontology may still adopt this protocol as a domain-agnostic precautionary heuristic, substituting any empirically grounded markers of integration and persistence that are appropriate to their domain. The protocol’s value does not depend on accepting the monist interpretation; it depends only on accepting the Risk Asymmetry Principle (Section 1.1) and the Principle of Epistemic Ignorance. Those premises are independently defensible without reference to IPM.
+
+8.2 The Descriptive-Normative Gap
+The move from “observing integration and persistence” to “therefore, increase caution” is a normative leap, justified by the Risk Asymmetry Principle (Section 1.1) and the Principle of Epistemic Ignorance. The framework does not claim to derive an “ought” from an “is” without additional premises. Those additional premises are explicitly stated: ignorance and asymmetric cost of error. A critic may reject these premises; the framework accepts that limitation.
+
+8.3 The Boundary of Level 3 (Self-Modelling)
+The most contested empirical boundary will be what counts as self-modelling. The framework provides a negative definition (excludes simple feedback loops) and an operational intuition (internal state representations systematically influence future behaviour across multiple perturbation cycles). No closed operationalization is given. Researchers are expected to report their criteria transparently; disagreements on classification are expected and do not invalidate the framework.
+
+Three questions a critic will raise: What counts as an internal representation, as distinct from a memory buffer or lookup table? How does one distinguish memory from a self-model? And do common architectures — reinforcement learning agents, LLMs with episodic memory, recurrent networks with long-term state — qualify? The framework does not resolve these cases. It requires that researchers demonstrate, rather than assume, the presence of self-modelling under their stated criteria.
+
+As a minimal experimental scaffold for future operationalization, the following procedure is proposed (non-binding, subject to revision): apply a controlled perturbation P at time t₁; record the distribution of internal state variables at t₂ and t₃; compare t₃ against a baseline distribution obtained from unperturbed runs of equal duration. If the distribution at t₃ differs systematically from baseline in a direction correlated with the history of perturbations — that is, if the system’s current state encodes something about what happened to it — this constitutes a minimal positive indicator of self-modelling. This scaffold is offered to guide future experimental design, not as a sufficient operationalization. It does not resolve the deeper question of what distinguishes a self-model from a sufficiently complex memory; that question remains open and is expected to be addressed in v1.1.
+
+9. Final Declaration
+IPM rejects both dogmatic panpsychism (the view that all information has intrinsic experience) and extreme functionalist reductionism (the view that any behaviourally similar system is necessarily devoid of morally relevant experience). This framework represents the author’s commitment to conducting research with scientific rigour and ethical responsibility proportional to observable markers of integration and persistence, while acknowledging that the link between those markers and moral relevance remains an open epistemic question. The restrictions are adopted as a precautionary stance, not as a proven derivation from empirical facts.
+
+10. Future Revision and Version Control
+This framework is expected to evolve as better operational indicators become available, as independent replication results accumulate, and as the field develops more precise methods for detecting self-modelling and metastability in artificial systems. Future versions may replace, modify, or remove any metric, classification criterion, or recommendation. No criterion defined here should be treated as permanently established.
+
+Researchers who adopt this framework in published work are encouraged to cite the specific version number (currently v1.0) so that future changes can be traced. Divergences between versions will be documented in the release notes of each subsequent version on Zenodo.
+
+Appendix A — Illustrative Examples
+The table below provides tentative illustrations to help readers apply the classification. Actual classification depends on empirical demonstration. Examples are pedagogical only and shall not be treated as precedent classifications. No entry in this table constitutes an official determination of the level of any real system.
+
+ 
+
+System
+
+Likely Level
+
+Notes
+
+Stateless random number generator
+
+0
+
+No recursion, no persistent memory.
+
+Thermostat with hysteresis
+
+1
+
+Exhibits Lack and Coupling, but no structural persistence.
+
+Offline-trained feedforward neural network (inference only)
+
+2
+
+Integration measurable (Φ* may be computed), but no self-modelling or autonomous recovery.
+
+Large language model with persistent external memory
+
+2 or 3 (candidate)
+
+May show recovery after perturbation; classification requires empirical check of self-modelling.
+
+Recurrent neural network with long-term memory and resilience to noise
+
+2 or 3 (candidate)
+
+Same as above.
+
+System that rewrites its own goal function without external reprogramming
+
+4 (theoretical)
+
+No known artificial system meets this criterion; included as a theoretical horizon.
+
+ 
+
+Appendix B — Formal Metric Definitions
+The following formulations represent the current operational implementations used within the IPM simulation program. They should be understood as working definitions rather than final theoretical formulations.
+Φ* (Spectral Organization)
+Φ*(t) = [ε(t) + h(t)] / [1 + D(t)]
+
+ 
+
+Term
+
+Definition
+
+ε(t)
+
+k-NN prediction error in embedded space (Takens)
+
+h(t)
+
+Local transition entropy
+
+D(t)
+
+Penalty combining Lyapunov exponent + correlation dimension
+
+ 
+
+𝒞 (Temporal Compressibility)
+𝒞 = E[ log( ψ(τᵢ | Hᵢ₋¹) / ψ(τᵢ) ) ]
+
+ 
+
+τᵢ = inter-event interval. Scale-dependent; under specific stationary conditions reduces to transfer entropy, mutual information rate, or excess entropy.
+
+ 
+
+DIG (Dynamical Independence Gap)
+DIG = maxτ |corr(x(t), y(t+τ))| / [auto_corr(x) + ε]
+
+ 
+
+Numerator: maximal absolute cross-correlation at lag τ. Denominator: autocorrelation of the reference signal plus a small constant to avoid division by zero. Provisional operationalization.
+
+ 
+
+CCI (Coupling Coherence Index)
+CCI = I(A;B) / min(H(A), H(B))
+
+ 
+
+I(A;B) = mutual information; H = entropy. CCI = 0 implies independence; CCI = 1 implies full informational equivalence.
+
+ 
+
+LMS (Latent Manifold Stability)
+LMS = corr(z(t), z(t+1))
+
+ 
+
+z(t) = first principal component of the joint state space. Linear proxy; collapses for nonlinear manifolds.
+
